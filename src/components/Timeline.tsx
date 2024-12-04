@@ -17,7 +17,7 @@ const Timeline = () => {
                                 clipRule="evenodd" />
                         </svg>
                     </div>
-                    <div className="timeline-end mb-10">
+                    <div className="timeline-end mb-10 md:w-96 lg:w-[30rem] text-justify">
                         <time className="font-mono italic">January 2023</time>
                         <div className="text-lg font-black">BosonQ Psi PVT. LTD.</div>
                         <p className=" text-md">With 2 years of experience at this company, I play a key role in the software team, handling both frontend and backend
