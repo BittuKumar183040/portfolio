@@ -7,9 +7,7 @@ const Footer = () => {
                 <p>Copyright © 2023 - {new Date().getFullYear()} - All right reserved</p>
             </aside>
             <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-                <IoLogoGithub  className=" h-6 w-fit" />
-                <IoLogoGithub  className=" h-6 w-fit" />
-                <IoLogoGithub  className=" h-6 w-fit" />
+                <IoLogoGithub onClick={() => window.open("https://github.com/bittukumar183040", "_blank")}  className=" h-6 w-fit cursor-pointer" />
             </nav>
         </footer>
     )

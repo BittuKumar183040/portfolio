@@ -1,7 +1,7 @@
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-white bg-opacity-40 backdrop-blur-sm shadow-md z-50 sticky top-0">
+        <div className="flex bg-white bg-opacity-40 backdrop-blur-sm shadow-md z-50 fixed top-0 w-full">
             <div className="flex-1">
                 <p className="btn btn-ghost text-xl">Bittu Kumar.</p>
             </div>
