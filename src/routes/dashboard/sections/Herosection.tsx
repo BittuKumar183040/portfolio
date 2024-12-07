@@ -21,7 +21,7 @@ const Herosection = () => {
                     </div>
                     <ConnectBtn />
                 </div>
-                <div id="svg-container" className=' absolute md:right-0 mt-24 md:w-1/2 h-screen -z-50 pointer-events-none'>
+                <div id="svg-container" className=' absolute md:right-0 mt-24 md:w-1/2 h-screen pointer-events-none'>
                     <img className=' object-contain opacity-40 text-red-400' src='/me.svg' alt='' />
                 </div>
                 <div className=" absolute left-0 bottom-6 w-full flex justify-center">

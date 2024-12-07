@@ -1,17 +1,17 @@
 
 const Navbar = () => {
     return (
-        <div className="flex bg-white bg-opacity-40 backdrop-blur-sm shadow-md z-50 fixed top-0 w-full">
-            <div className="flex-1">
-                <p className="btn btn-ghost text-xl">Bittu Kumar.</p>
+        <div className="flex bg-white bg-opacity-40 backdrop-blur-sm shadow-md z-50 fixed top-0 w-full p-3 px-4">
+            <div className="flex-1 flex items-center">
+                <p className="text-md">Bittu Kumar.</p>
             </div>
-            <div className="flex-none">
-                <button className="btn btn-square btn-ghost">
+            <div className="">
+                <button className="">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        className="inline-block h-5 w-5 stroke-current">
+                        className="inline-block h-4 w-4 stroke-current">
                         <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
