@@ -1,14 +1,15 @@
 import { useRef, useState, useEffect } from 'react'
 
 const ProjectImages = () => {
-    const [isMobile, setIsMobile] = useState(false);
+    const isMobile = window.innerWidth < 768;
+    const [images, setImages] = useState<string[]>([]);
 
     const item = useRef<HTMLDivElement>(null);
     const handleMouseEnter = () => {
-        document.body.classList.add('overflow-hidden');
+        !isMobile && document.body.classList.add('overflow-hidden');
     }
     const handleMouseLeave = () => {
-        document.body.classList.remove('overflow-hidden');
+        !isMobile && document.body.classList.remove('overflow-hidden');
     }
 
     const handleFocus = () => {
@@ -16,52 +17,36 @@ const ProjectImages = () => {
     }
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
+        const loadImages = async () => {
+            if (isMobile) {
+                const img1 = (await import('../assets/ecommerce/ecommerce1.jpg')).default;
+                setImages([img1]);
+            } else {
+                const img1 = (await import('../assets/ecommerce/ecommerce1.jpg')).default;
+                const img2 = (await import('../assets/ecommerce/ecommerce2.jpg')).default;
+                const img3 = (await import('../assets/ecommerce/ecommerce3.jpg')).default;
+                const img4 = (await import('../assets/ecommerce/ecommerce4.jpg')).default;
+                setImages([img1, img2, img3, img4]);
+            }
         };
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
+        loadImages();
     }, []);
 
     return (
-        <div ref={item} className={`carousel carousel-vertical hover ${!isMobile && "cursor-n-resize"} rounded-box h-56 flex flex-col bg-slate-200`}
+        <div ref={item} className={`carousel carousel-vertical hover ${isMobile ? "cursor-pointer" : "cursor-n-resize"} rounded-box h-56 flex flex-col bg-slate-200`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onFocus={handleFocus}
         >
-            {isMobile ? (
+            {images.map((src, index) => (
                 <img
-                    className="carousel-item h-full w-full object-cover object-top transition-all duration-1000"
-                    src='./ecommerce/ecommerce1.jpg'
-                    alt="Mobile View"
+                    key={index}
+                    className="carousel-item h-full w-full object-cover object-top"
+                    src={src}
+                    alt={`Slide ${index + 1}`}
+                    loading="lazy"
                 />
-            ) : (
-                <>
-                    <img
-                        className="carousel-item h-full w-full object-cover object-top transition-all duration-1000"
-                        src='./ecommerce/ecommerce1.jpg'
-                        alt=""
-                    />
-                    <img
-                        className="carousel-item h-full w-full object-cover object-top transition-all duration-1000"
-                        src='./ecommerce/ecommerce2.jpg'
-                        alt=""
-                    />
-                    <img
-                        className="carousel-item h-full w-full object-cover object-top transition-all duration-1000"
-                        src='./ecommerce/ecommerce3.jpg'
-                        alt=""
-                    />
-                    <img
-                        className="carousel-item h-full w-full object-cover object-top transition-all duration-1000"
-                        src='./ecommerce/ecommerce4.jpg'
-                        alt=""
-                    />
-                </>
-            )}
+            ))}
         </div>
     )
 }
