@@ -4,7 +4,8 @@ const MovetoTop = () => {
     const [showOnTop, setShowOnTop] = useState(false)
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 1111) {
+            console.log(window.scrollY)
+            if (window.scrollY > 600) {
                 setShowOnTop(true);
             } else {
                 setShowOnTop(false);
