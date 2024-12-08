@@ -1,7 +1,7 @@
 import ProjectCard from '../../../components/ProjectCard';
 
-const locEcom = ['../assets/ecommerce/ecommerce1.jpg', '../assets/ecommerce/ecommerce2.jpg', '../assets/ecommerce/ecommerce3.jpg', '../assets/ecommerce/ecommerce4.jpg'];
-const ticTac = ['../assets/tictac/tic1.jpg', '../assets/tictac/tic2.jpg', '../assets/tictac/tic3.jpg'];
+import ecom from '../../../assets/ecommerce/ecommerce1.jpg';
+import tic from '../../../assets/tictac/tic1.jpg';
 
 const Projects = () => {
   return (
@@ -13,18 +13,17 @@ const Projects = () => {
           <ProjectCard 
             title='Shopping Website | ShowWithUs.' 
             description="Created E-commerece webpage using HTML, CSS and JavaScript" 
+            imageSource={ecom}
             gitLink="https://github.com/BittuKumar183040/ShopWithUs"
             previewLink="https://sw-us.vercel.app"
-            img={locEcom}
           />
 
           <ProjectCard 
             title='Tic Tac Toe' 
             description="An interactive tic tac toe game with smooth animation build using Vanilla Javascript, HTML and CSS" 
+            imageSource={tic}
             gitLink="https://github.com/BittuKumar183040/tictac"
             previewLink="https://bittukumar183040.github.io/tictac"
-            img={ticTac}
-            multiple={true}
           />
 
         </div>

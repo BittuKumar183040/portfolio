@@ -1,21 +1,26 @@
 import React from 'react';
 import { FaGithub } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa6";
-import ProjectImages from './ProjectImages';
 
 interface ProjectProps {
     title:string;
     description:string;
-    img?:string[];
+    imageSource?:string;
     gitLink?:string;
     previewLink?:string;
-    multiple?:boolean
 }
 
-const ProjectCard : React.FC<ProjectProps> = ({title, description, img, gitLink, previewLink, multiple}) => {
+const ProjectCard : React.FC<ProjectProps> = ({title, description, imageSource, gitLink, previewLink}) => {
   return (
     <div className="card glass md:w-80 lg:w-96 w-full justify-around overflow-hidden transition-all shadow-sm hover:shadow-xl hover:-translate-y-2">
-      <ProjectImages location={img} multiple={multiple}/>
+      <div className={`carousel select-none carousel-vertical hover "cursor-pointer" rounded-box h-56 flex flex-col bg-slate-200`}>
+        <img
+            className="carousel-item h-full w-full object-cover object-top pointer-events-none"
+            src={imageSource}
+            alt={""}
+            loading="lazy"
+        />
+      </div>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <div>{description}</div>    
