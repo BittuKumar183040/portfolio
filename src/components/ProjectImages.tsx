@@ -1,7 +1,12 @@
 import { useRef, useState, useEffect } from 'react'
 
-const ProjectImages = () => {
-    const isMobile = window.innerWidth < 768;
+interface ProjectImages {
+    location: any;
+    multiple: boolean | undefined
+}
+
+const ProjectImages : React.FC<ProjectImages> =  ({location, multiple}) => {
+    const isMobile = multiple === true ? false : window.innerWidth < 768;
     const [images, setImages] = useState<string[]>([]);
 
     const item = useRef<HTMLDivElement>(null);
@@ -19,21 +24,21 @@ const ProjectImages = () => {
     useEffect(() => {
         const loadImages = async () => {
             if (isMobile) {
-                const img1 = (await import('../assets/ecommerce/ecommerce1.jpg')).default;
+                const img1 = (await import(location[0])).default;
                 setImages([img1]);
             } else {
-                const img1 = (await import('../assets/ecommerce/ecommerce1.jpg')).default;
-                const img2 = (await import('../assets/ecommerce/ecommerce2.jpg')).default;
-                const img3 = (await import('../assets/ecommerce/ecommerce3.jpg')).default;
-                const img4 = (await import('../assets/ecommerce/ecommerce4.jpg')).default;
-                setImages([img1, img2, img3, img4]);
+                const images = await Promise.all(location.map( async (loc: any) => {
+                    const img = await import(loc);
+                    return img.default
+                }))
+                setImages(images);
             }
         };
         loadImages();
     }, []);
 
     return (
-        <div ref={item} className={`carousel carousel-vertical hover ${isMobile ? "cursor-pointer" : "cursor-n-resize"} rounded-box h-56 flex flex-col bg-slate-200`}
+        <div ref={item} className={`carousel select-none carousel-vertical hover ${isMobile ? "cursor-pointer" : "cursor-n-resize"} rounded-box h-56 flex flex-col bg-slate-200`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onFocus={handleFocus}
@@ -41,7 +46,7 @@ const ProjectImages = () => {
             {images.map((src, index) => (
                 <img
                     key={index}
-                    className="carousel-item h-full w-full object-cover object-top"
+                    className="carousel-item h-full w-full object-cover object-top pointer-events-none"
                     src={src}
                     alt={`Slide ${index + 1}`}
                     loading="lazy"
