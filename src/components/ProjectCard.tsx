@@ -27,7 +27,7 @@ const ProjectCard : React.FC<ProjectProps> = ({title, description, imageSource, 
         <div className="card-actions justify-end mt-4 flex gap-5">
           { gitLink && 
             <div className=' tooltip tooltip-top' data-tip="Github">
-              <FaGithub className=' cursor-pointer' data-tip="Github" onClick={() => window.open(gitLink, "_blank")} size={25}/>
+              <FaGithub className=' cursor-pointer' onClick={() => window.open(gitLink, "_blank")} size={25}/>
             </div>
           }
           { previewLink && 

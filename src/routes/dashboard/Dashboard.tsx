@@ -1,3 +1,4 @@
+import MovetoTop from "../../components/MovetoTop"
 import Footer from "./sections/Footer"
 import Herosection from "./sections/Herosection"
 import Navbar from "./sections/Navbar"
@@ -12,7 +13,8 @@ const Dashboard = () => {
       <Timeline />
       <Projects />
     </div>
-    <Footer/>
+    <MovetoTop/>
+    <Footer />
   </>
   )
 }
