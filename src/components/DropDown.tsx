@@ -15,8 +15,10 @@ const DropDown = () => {
         <div className="dropdown dropdown-end">
             <RiMenu3Line tabIndex={0} size={25} className=" cursor-pointer"/>
             <ul tabIndex={0} className="dropdown-content bg-base-100 rounded-box z-[1] w-44 p-2 shadow">
-                <li className="flex justify-between p-1 px-2 cursor-pointer hover:bg-slate-200 rounded-lg"  onClick={handleResumeDownload}>
-                    <p className=" flex justify-between">Resume</p>
+                <li className="flex justify-between p-1 px-2 cursor-pointer hover:bg-slate-200 rounded-lg transition-colors
+                    dark:hover:bg-black dark:bg-gray-800
+                    "  onClick={handleResumeDownload}>
+                    <p className=" flex justify-between text-md">Resume</p>
                     <div className=' tooltip tooltip-top ' data-tip="Download">
                         <RxDownload className=" cursor-pointer mx-1" size={20}/>
                     </div>
