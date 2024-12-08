@@ -2,7 +2,7 @@ import TechnologyStack from "../../../components/TechnologyStack"
 
 const Timeline = () => {
     return (
-        <section className=" container mx-auto mt-4 mb-10">
+        <section className=" container mx-auto mt-4 mb-20">
             <h1 className="text-2xl md:text-2xl lg:text-3xl font-bold text-red-600 text-center py-2">Experience</h1>
             <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
                 <li>
@@ -27,7 +27,7 @@ const Timeline = () => {
                         Dev environment. I have also developed multiple POCs and led the development of an in-house 3D model visualization
                         tool to display simulation results and uploaded CAD files.</p>
                     </div>
-                    <div className="timeline-end timeline-box">
+                    <div className="timeline-end timeline-box mb-10">
                         <TechnologyStack/>
                     </div>
                     <hr />
