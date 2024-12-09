@@ -15,7 +15,7 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div className=" bg-white dark:bg-gray-950"> 
       {loading ? <LoadingScreen /> : <Dashboard />}
     </div>
   )

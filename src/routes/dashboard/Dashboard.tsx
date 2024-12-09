@@ -8,7 +8,7 @@ import Timeline from "./sections/Timeline"
 const Dashboard = () => {
   return (<>
     <Navbar />
-    <div className=" mx-6">
+    <div className=" px-6">
       <Herosection />
       <Timeline />
       <Projects />

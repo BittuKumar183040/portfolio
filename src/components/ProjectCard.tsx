@@ -12,7 +12,7 @@ interface ProjectProps {
 
 const ProjectCard : React.FC<ProjectProps> = ({title, description, imageSource, gitLink, previewLink}) => {
   return (
-    <div className="card glass md:w-80 lg:w-96 w-full justify-around transition-all shadow-sm hover:shadow-xl hover:-translate-y-2">
+    <div className="card light:glass dark:bg-gray-900 md:w-80 lg:w-96 w-full justify-around transition-all shadow-md hover:shadow-2xl hover:-translate-y-2">
       <div className={`carousel select-none carousel-vertical hover "cursor-pointer" rounded-box h-56 flex flex-col bg-slate-200`}>
         <img
             className="carousel-item h-full w-full object-cover object-top pointer-events-none"
@@ -21,9 +21,9 @@ const ProjectCard : React.FC<ProjectProps> = ({title, description, imageSource, 
             loading="lazy"
         />
       </div>
-      <div className="card-body">
+      <div className="card-body dark:text-white">
         <h2 className="card-title">{title}</h2>
-        <div>{description}</div>    
+        <div className='dark:text-gray-300'>{description}</div>    
         <div className="card-actions justify-end mt-4 flex gap-5">
           { gitLink && 
             <div className=' tooltip tooltip-top' data-tip="Github">

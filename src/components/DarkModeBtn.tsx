@@ -11,7 +11,7 @@ const DarkModeBtn = () => {
         document.documentElement.classList.toggle('dark', newIsDark);
         localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
     };
-
+    
     useEffect(() => {
         const storedTheme = localStorage.getItem('theme');
         if (storedTheme === 'dark') {

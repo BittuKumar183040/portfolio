@@ -6,11 +6,3 @@
 * {
     font-family: "Nunito", sans-serif;
 }
-
-body {
-    background-image: url("backgound.jpg");
-    background-color: white;
-    background-size: cover;
-    z-index: 999999;
-    background-repeat: repeat-y;
-}

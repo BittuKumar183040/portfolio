@@ -17,7 +17,8 @@ const MovetoTop = () => {
     },[])
     return (
         <div 
-            className={`h-12 w-22 fixed right-8 bottom-8 filter invert-0 mix-blend-darken z-50 cursor-pointer transition-all duration-300 ease-in-out
+            className={`h-12 w-22 fixed right-8 bottom-8 rounded-full z-50 cursor-pointer transition-all duration-300 ease-in-out
+                hover:scale-110 filter dark:invert opacity-90
                 ${showOnTop ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
                 `}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
