@@ -1,4 +1,4 @@
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
 import { RiContactsLine } from "react-icons/ri";
 import { FaLinkedinIn } from "react-icons/fa6";
