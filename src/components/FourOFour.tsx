@@ -8,7 +8,8 @@ const FourOFour = () => {
         Page Not Found
       </h1>
       <p className="text-lg lg:text-xl px-7 text-gray-600 dark:text-gray-400 text-center mt-4 max-w-lg">
-        Oops! The page you're looking for doesn't exist. It might have been removed or the URL is incorrect.
+        Oops! The page you're looking for doesn't exist. It might have been
+        removed or the URL is incorrect.
       </p>
       <button
         onClick={() => (window.location.href = '/')}

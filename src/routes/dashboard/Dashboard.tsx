@@ -1,6 +1,6 @@
-import Herosection from "./sections/Herosection"
-import Projects from "./sections/Projects"
-import Timeline from "./sections/Timeline"
+import Herosection from './sections/Herosection';
+import Projects from './sections/Projects';
+import Timeline from './sections/Timeline';
 
 const Dashboard = () => {
   return (
@@ -9,7 +9,7 @@ const Dashboard = () => {
       <Timeline />
       <Projects />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
