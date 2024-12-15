@@ -2,7 +2,6 @@ import { IoLogoGithub } from "react-icons/io";
 import me  from "../../../assets/me.svg"
 const Footer = () => {
 
-    console.log(me)
     return (
         <footer className="footer bg-neutral text-neutral-content items-center p-4 flex justify-between">
             <aside className="grid-flow-col items-center flex gap-5">

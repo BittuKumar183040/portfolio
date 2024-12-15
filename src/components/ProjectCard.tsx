@@ -1,18 +1,25 @@
 import React from 'react';
 import { FaGithub } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 interface ProjectProps {
+    id: string;
     title:string;
     description:string;
-    imageSource?:string;
+    imageSource?:any;
     gitLink?:string;
     previewLink?:string;
 }
 
-const ProjectCard : React.FC<ProjectProps> = ({title, description, imageSource, gitLink, previewLink}) => {
+const ProjectCard : React.FC<ProjectProps> = ({id, title, description, imageSource, gitLink, previewLink}) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/project/${id}`);
+  }
+
   return (
-    <div className="card light:glass dark:bg-gray-900 md:w-80 lg:w-96 w-full justify-around transition-all shadow-md hover:shadow-2xl hover:-translate-y-2">
+    <div onClick={handleClick} className="card light:glass dark:bg-gray-900 md:w-80 lg:w-96 w-full justify-around transition-all shadow-md hover:shadow-2xl hover:-translate-y-2">
       <div className={`carousel select-none carousel-vertical hover "cursor-pointer" rounded-box h-56 flex flex-col bg-slate-200`}>
         <img
             className="carousel-item h-full w-full object-cover object-top pointer-events-none"

@@ -1,26 +1,30 @@
-import { useEffect, useState } from "react"
+import FourOFour from "./components/FourOFour"
+import MovetoTop from "./components/MovetoTop"
 import Dashboard from "./routes/dashboard/Dashboard"
+import Footer from "./routes/dashboard/sections/Footer"
+import Navbar from "./routes/dashboard/sections/Navbar"
+import Project from "./routes/project/Project"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const[loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const handlePageLoad = () => setLoading(false);
-    const simulateLoading = setTimeout(() => setLoading(false), 1000);
-    window.addEventListener("load", handlePageLoad);
-    return () => {
-      window.removeEventListener("load", () => setLoading(false));
-      clearTimeout(simulateLoading);
-    }
-  }, [])
 
   return (
-    <div className=" bg-white dark:bg-gray-950"> 
-      {loading ? <LoadingScreen /> : <Dashboard />}
-    </div>
+    <>
+      <Navbar />
+      <div className=" bg-white dark:bg-gray-950"> 
+        {/* route setup */}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/project/:id" element={<Project />} key={window.location.pathname}/>
+            <Route path="*" element={<FourOFour />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+      <MovetoTop/>
+      <Footer />
+    </>
   )
 }
-const LoadingScreen = () => <div className="flex h-screen w-screen justify-center items-center">
-    <img className=" h-24 w-24" src="./loading.gif" alt="loading" /> 
-  </div>;
+
 export default App

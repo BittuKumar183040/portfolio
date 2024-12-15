@@ -18,8 +18,8 @@ function ConnectBtn() {
           dark:text-white dark:bg-gray-900 dark:border-white
           hover:dark:bg-gray-200 hover:dark:text-black"
       >
-          <RiContactsLine className="mr-1" />
-          <span>Get in Touch</span>
+        <RiContactsLine className="mr-1" />
+        <span>Get in Touch</span>
       </button>
       <div
         className={`flex flex-row gap-2 transition-all duration-300 ease-in-out ${
