@@ -5,23 +5,6 @@ import ProjectImagePreview from './ProjectImagePreview';
 import { FaGithub, FaRegEye } from 'react-icons/fa6';
 import { IoIosArrowBack } from 'react-icons/io';
 
-interface Props {
-  title: string;
-  value?: number;
-}
-const Progress = ({ title, value }: Props) => {
-  return (
-    <div className=" flex items-center gap-4">
-      <p className=" text-md w-40 opacity-80">{title}</p>
-      <progress
-        className="progress w-full"
-        {...(value == undefined ? {} : { value })}
-        max="100"
-      ></progress>
-    </div>
-  );
-};
-
 const Project = () => {
   let { id } = useParams();
   const project = projects.find((project) => project.id === id);

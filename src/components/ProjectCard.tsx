@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,6 @@ interface ProjectProps {
   id: string;
   title: string;
   shortDesc: string;
-  description: string;
   imageSource?: any;
   gitLink?: string;
   previewLink?: string;
@@ -17,7 +16,6 @@ const ProjectCard: React.FC<ProjectProps> = ({
   id,
   title,
   shortDesc,
-  description,
   imageSource,
   gitLink,
   previewLink,

@@ -1,7 +1,6 @@
 import FourOFour from './components/FourOFour';
 import MovetoTop from './components/MovetoTop';
 import Dashboard from './routes/dashboard/Dashboard';
-import Footer from './routes/dashboard/sections/Footer';
 import Navbar from './routes/dashboard/sections/Navbar';
 import Project from './routes/project/Project';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -25,7 +24,6 @@ function App() {
         </BrowserRouter>
       </div>
       <MovetoTop />
-      <Footer />
     </>
   );
 }
