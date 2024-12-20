@@ -3,7 +3,7 @@ import { projects } from '../../../assets/data/projects';
 
 const Projects = () => {
   return (
-    <section className=" container mx-auto mt-4 mb-10">
+    <section className=" container mx-auto mt-4 pb-10">
       <h1 className="text-2xl md:text-2xl lg:text-3xl font-bold text-red-600 text-center text-shadow-md">
         Projects
       </h1>
@@ -16,6 +16,7 @@ const Projects = () => {
             key={project.id}
             id={project.id}
             title={project.title}
+            shortDesc={project.shortDesc}
             description={project.description}
             imageSource={project.imageSource}
             gitLink={project.gitLink}

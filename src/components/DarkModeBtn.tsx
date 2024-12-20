@@ -26,14 +26,14 @@ const DarkModeBtn = () => {
   return (
     <div className=" relative cursor-pointer" onClick={handleSwitch}>
       <div
-        className={` bg-gray-200 rounded-full h-6 w-12 flex items-center border-2 shadow-inner 
+        className={` bg-gray-200 rounded-full h-6 w-12 flex items-center border-2 shadow-inner
                 ${isDark ? 'bg-gray-500 border-gray-500' : 'border-white-200'}
                 `}
       >
         {isDark ? (
-          <MdDarkMode className=" text-white ml-1" />
+          <MdDarkMode className=" swap-on text-white ml-1" />
         ) : (
-          <CiLight className=" w-full ml-5 text-black" />
+          <CiLight className=" swap-off w-full ml-5 text-black" />
         )}
       </div>
       <div

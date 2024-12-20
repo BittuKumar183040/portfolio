@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 interface ProjectProps {
   id: string;
   title: string;
+  shortDesc: string;
   description: string;
   imageSource?: any;
   gitLink?: string;
@@ -15,14 +16,20 @@ interface ProjectProps {
 const ProjectCard: React.FC<ProjectProps> = ({
   id,
   title,
+  shortDesc,
   description,
   imageSource,
   gitLink,
   previewLink,
 }) => {
   const navigate = useNavigate();
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     navigate(`/project/${id}`);
+  };
+  const handleLinkClick = (e: React.MouseEvent<SVGElement>, link: string) => {
+    e.stopPropagation();
+    window.open(link, '_blank');
   };
 
   return (
@@ -35,20 +42,22 @@ const ProjectCard: React.FC<ProjectProps> = ({
       >
         <img
           className="carousel-item h-full w-full object-cover object-top pointer-events-none"
-          src={imageSource}
+          src={imageSource[0]}
           alt={''}
           loading="lazy"
         />
       </div>
-      <div className="card-body dark:text-white">
-        <h2 className="card-title">{title}</h2>
-        <div className="dark:text-gray-300">{description}</div>
-        <div className="card-actions justify-end mt-4 flex gap-5">
+      <div className="card-body dark:text-white p-4 md:p-5 ">
+        <h2 className="card-title text-md">{title}</h2>
+        <div className="dark:text-gray-300 h-20 text-sm overflow-clip ">
+          {shortDesc}
+        </div>
+        <div className="card-actions flex-1 justify-end items-end mt-4 flex gap-5 ">
           {gitLink && (
             <div className=" tooltip tooltip-top" data-tip="Github">
               <FaGithub
                 className=" cursor-pointer"
-                onClick={() => window.open(gitLink, '_blank')}
+                onClick={(e) => handleLinkClick(e, gitLink)}
                 size={25}
               />
             </div>
@@ -57,7 +66,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
             <div className=" tooltip tooltip-top" data-tip="Project Preview">
               <FaRegEye
                 className=" cursor-pointer"
-                onClick={() => window.open(previewLink, '_blank')}
+                onClick={(e) => handleLinkClick(e, previewLink)}
                 size={25}
               />
             </div>

@@ -40,7 +40,7 @@ const Timeline = () => {
               and uploaded CAD files.
             </p>
           </div>
-          <div className="timeline-end timeline-box mb-10 dark:bg-gray-900 dark:border-0 dark:text-white">
+          <div className="timeline-end timeline-box mb-10 dark:border-2 dark:text-white bg-transparent">
             <TechnologyStack />
           </div>
           <hr />

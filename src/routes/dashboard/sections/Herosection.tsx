@@ -5,7 +5,7 @@ import me from '../../../assets/me.svg';
 const Herosection = () => {
   return (
     <section className=" container mx-auto">
-      <div className=" flex justify-between items-center gap-10 flex-wrap h-screen">
+      <div className=" flex justify-between items-center gap-10 flex-wrap h-screen pt-16">
         <div className="flex flex-col gap-6 transform -translate-y-16 text-left px-4">
           <div className="text-gray-900 flex flex-col items-center md:items-start mt-64 md:mt-0 py-4 text-center ">
             <p className="text-xl md:text-2xl lg:text-3xl font-light dark:text-white">
@@ -15,14 +15,10 @@ const Herosection = () => {
               Full Stack Developer
             </p>
             <p className="text-2xl md:text-4xl lg:text-5xl font-medium text-gray-700 text-shadow-sm dark:text-white">
-              {' '}
               & 3D Modelling Artist
             </p>
           </div>
-          <div
-            className="text-lg md:text-xl lg:w-1/2 text-gray-700 opacity-70 text-center md:text-left 
-                        dark:text-white"
-          >
+          <div className="text-lg md:text-xl lg:w-1/2 text-gray-700 opacity-70 text-center md:text-left dark:text-white">
             <p>
               I'm <span className="font-bold text-red-600">Bittu Kumar</span>, a
               passionate{' '}
