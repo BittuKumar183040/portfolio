@@ -1,50 +1,72 @@
-# React + TypeScript + Vite
+# 💼 Bittu Kumar - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🧑‍💻 About Me
+Hi, I'm **Bittu Kumar**, an experienced **Web Developer** with over **2 years of professional experience** working in an Indian-US product-based startup. During my tenure, I have played a significant role in developing innovative projects that saved the company **thousands of dollars**.
 
-Currently, two official plugins are available:
+My work includes:
+- **3D/2D Simulation Rendering**
+- Developing a **Master Class Website** for conferences
+- Building **Multiple Microservices** (e.g., API Gateway, Identity Service, Access Service)
+- Handling the development of **Beta 2.0** (Frontend & Backend) and deploying it in Dev environments.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🏢 Work Experience
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Software Developer (2+ Years)
+- **Role:** Key contributor in the software team, handling **frontend** and **backend development** for various projects.  
+- **Technologies Used:** React, FastAPI, Spring Boot, and AWS deployment.
+- **Key Achievements:**
+  - Designed and developed an in-house **3D model visualization tool** to display simulation results and visualize uploaded CAD files.
+  - Built multiple **Proof of Concepts (POCs)** and projects for the company.
+  - Independently handled **3D/2D visualization workflows**, reducing dependency on external tools.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## 📂 My Projects
+### 🌟 3D Model Visualization Tool
+- **Description:** A tool to visualize simulation results and render uploaded CAD files in real-time.  
+- **Technologies Used:** React, Three.js, FastAPI, Spring Boot, Blender 3D.  
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 🌟 Master Class Conference Website
+- **Description:** A platform to organize, manage, and conduct virtual conferences seamlessly.  
+- **Technologies Used:** React, Django, Tailwind CSS, AWS.  
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+### 🌟 Microservices Architecture
+- **Description:** Developed multiple microservices, including **API Gateway**, **Identity Service**, and **Access Service**, to support scalable systems.  
+- **Technologies Used:** FastAPI, Docker, Postgres, Celery.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+---
+
+## 🛠️ Technologies I Work With
+
+### Backend
+- **Languages:** Python (Django, FastAPI), SQLAlchemy, Celery
+- **Skills:** Data Structures, JSON, Pre/Post Data Processing, Socket.IO
+
+### Databases
+- **Relational:** MySQL, PostgreSQL
+- **NoSQL:** MongoDB
+
+### DevOps
+- **Tools:** AWS (S3, ECR), Docker, Docker Compose, Lens
+
+### Frontend
+- **Frameworks:** React.js, Redux, Three.js (RTF and Drui)
+- **Design:** SCSS, Tailwind CSS, Styled-components, Responsive Design, API Handling (Axios, Fetch)
+
+### UI/UX Tools
+- Figma, FigJam, Miro, Photoshop, Blender 3D
+
+---
+
+## 🚀 Achievements
+- Saved the company **thousands of dollars** by implementing in-house tools and optimized workflows.
+- Developed **POCs and microservices** that streamlined company operations and enhanced scalability.
+
+---
+
+## 📫 Contact Me
+- **Email:** [bk183040@gmail.com](mailto:bk183040@gmail.com)  
+- **GitHub:** [GitHub Profile](https://github.com/BittuKumar183040)  
+- **LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/bittukumar183040/)
