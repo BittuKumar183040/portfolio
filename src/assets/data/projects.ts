@@ -7,6 +7,9 @@ import tic1 from '../tictac/tic1.jpg';
 import tic2 from '../tictac/tic2.jpg';
 import tic3 from '../tictac/tic3.jpg';
 
+import cur1 from '../currency/cur1.png';
+import cur2 from '../currency/cur2.png';
+
 import adv from '../advice/adv1.jpg';
 
 export const projects = [
@@ -222,5 +225,80 @@ export const projects = [
     imageSource: [adv],
     gitLink: 'https://github.com/BittuKumar183040/Advice-Generator',
     previewLink: 'https://bittukumar183040.github.io/Advice-Generator/',
+  },
+  {
+    id: '83e31225-b646-4343-8b70-a5e17446955a',
+    title: 'Currency Converter',
+    shortDesc: 'A seamless currency conversion tool that provides real-time exchange rates and supports historical data. Perfect for travelers, businesses, and financial enthusiasts.',
+    description: `<div class=" max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-red-600 dark:text-red-400 mb-6 ">
+        Project: Currency Converter
+      </h3>
+      <p class="text-base mb-4">
+        A seamless currency conversion tool that provides real-time exchange rates and supports historical data. Perfect for travelers, businesses, and financial enthusiasts.
+      </p>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-[#ff0000] dark:text-[#ffa4a4]">Features</h2>
+        <ul class="list-disc ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li><strong>Live Exchange Rates:</strong> Fetches real-time currency data using an external API.</li>
+          <li><strong>Date Selection:</strong> Allows users to view exchange rates for a specific date.</li>
+          <li><strong>Input Validation:</strong> Ensures valid numerical input for conversion fields.</li>
+          <li><strong>Currency Suggestions:</strong> Displays a list of frequently used currencies for quick access.</li>
+          <li><strong>Local Storage Caching:</strong> Caches currency list and user preferences for faster subsequent loads.</li>
+        </ul>
+      </section>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-[#ff0000] dark:text-[#ffa4a4]">Usage</h2>
+        <ol class="list-decimal ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li>Select the desired currencies from the dropdown menus.</li>
+          <li>Input the amount to convert in the "From" field.</li>
+          <li>View the converted value in the "To" field.</li>
+          <li>Adjust the date to see historical exchange rates (if supported by the API).</li>
+        </ol>
+      </section>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-[#ff0000] dark:text-[#ffa4a4]">Technologies Used</h2>
+        <ul class="list-disc ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li><strong>HTML:</strong> Structuring the layout.</li>
+          <li><strong>CSS:</strong> Styling the application.</li>
+          <li><strong>JavaScript:</strong> Handling functionality and API interactions.</li>
+          <li><strong>Currency API:</strong> Fetching live exchange rates.</li>
+        </ul>
+      </section>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-[#ff0000] dark:text-[#ffa4a4]">File Structure</h2>
+        <pre class="bg-[#fff] dark:bg-gray-800 text-[#ff0000] dark:text-[#ffa4a4] p-4 rounded mt-2">
+          currency-converter/
+          ├── index.html    # Main HTML structure
+          ├── style.css     # Styling (if applicable)
+          ├── script.js     # Core JavaScript functionality
+          └── assets/       # Additional assets (e.g., favicon)
+              </pre>
+      </section>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-[#ff0000] dark:text-[#ffa4a4]">Future Improvements</h2>
+        <ul class="list-disc ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li><strong>Responsive Design:</strong> Enhance mobile and tablet usability.</li>
+          <li><strong>Error Handling:</strong> Display meaningful messages for network or API failures.</li>
+          <li><strong>Multi-Language Support:</strong> Add translations for global users.</li>
+        </ul>
+      </section>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-[#ff0000] dark:text-[#ffa4a4]">Acknowledgments</h2>
+        <ul class="list-disc ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li>API powered by <a href="https://github.com/fawazahmed0/currency-api" class="text-[#ff0000] dark:text-[#ffa4a4] hover:underline">Fawaz Ahmed's Currency API</a>.</li>
+          <li>Icons by <a href="https://fontawesome.com" class="text-[#ff0000] dark:text-[#ffa4a4] hover:underline">Font Awesome</a>.</li>
+        </ul>
+      </section>
+    </div>`,
+    imageSource: [cur1, cur2],
+    gitLink: 'https://github.com/BittuKumar183040/currency',
+    previewLink: 'https://bittukumar183040.github.io/currency/',
   },
 ];
