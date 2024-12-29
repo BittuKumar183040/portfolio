@@ -2,6 +2,8 @@ import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
+import { useSpring, animated, easings } from '@react-spring/web';
+import { useInView } from 'react-intersection-observer';
 
 interface ProjectProps {
   id: string;
@@ -30,10 +32,38 @@ const ProjectCard: React.FC<ProjectProps> = ({
     window.open(link, '_blank');
   };
 
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.4,
+  });
+
+  const [hoverStyle, api] = useSpring(() => ({
+    scale: 1,
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
+    config: { duration: 100 },
+  }));
+
+  const projectCardStyle = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(50px)',
+    config: {
+      duration: 500,
+      easing: easings.easeOutQuad,
+    },
+  });
+
   return (
-    <div
+    <animated.div
+      ref={ref}
+      onMouseEnter={() =>
+        api.start({ scale: 1.01, boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.2)' })
+      }
+      onMouseLeave={() =>
+        api.start({ scale: 1, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)' })
+      }
+      style={{ ...projectCardStyle, ...hoverStyle }}
       onClick={handleClick}
-      className="card light:glass dark:bg-gray-900 md:w-80 lg:w-96 w-full justify-around transition-all shadow-md hover:shadow-2xl hover:-translate-y-2"
+      className="card cursor-pointer light:glass dark:bg-gray-900 md:w-80 lg:w-96 w-full justify-around"
     >
       <div
         className={`carousel select-none carousel-vertical hover "cursor-pointer" rounded-box h-56 flex flex-col bg-slate-200`}
@@ -71,7 +101,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
           )}
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 };
 

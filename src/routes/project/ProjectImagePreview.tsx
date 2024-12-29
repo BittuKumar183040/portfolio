@@ -23,7 +23,7 @@ const ProjectImagePreview = ({ images }: any) => {
         ))}
       </div>
       <div className=" lg:w-[500px] text-center flex justify-around rounded-xl overflow-hidden">
-        <img src={images[index]} alt="" className=' bg-black' />
+        <img src={images[index]} alt="" className=" bg-black" />
       </div>
     </div>
   );

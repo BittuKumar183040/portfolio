@@ -12,13 +12,14 @@ const DropDown = () => {
 
   return (
     <div className="dropdown dropdown-end">
-      <RiMenu3Line tabIndex={0} size={25} className=" cursor-pointer" />
+      <RiMenu3Line tabIndex={0} size={25} className=" cursor-pointer p-0.5" />
       <ul
         tabIndex={0}
-        className="dropdown-content bg-base-100 dark:bg-gray-700 rounded-box z-[1] w-44 p-2 shadow"
+        className="dropdown-content bg-base-100 dark:bg-gray-700 rounded-box z-[1] w-32 shadow mt-4 "
       >
         <li
-          className="flex justify-between p-1 px-2 cursor-pointer hover:bg-slate-200 rounded-lg transition-colors
+          className="flex justify-between p-1 px-2 cursor-pointer bg-slate-200 rounded-lg transition-colors 
+                    hover:bg-slate-400 hover:text-white
                     dark:hover:bg-black dark:bg-gray-800
                     "
           onClick={handleResumeDownload}

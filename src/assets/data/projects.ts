@@ -7,6 +7,10 @@ import tic1 from '../tictac/tic1.jpg';
 import tic2 from '../tictac/tic2.jpg';
 import tic3 from '../tictac/tic3.jpg';
 
+import chat1 from '../chat/chat1.png';
+import chat2 from '../chat/chat2.png';
+import chat3 from '../chat/chat3.png';
+
 import cur1 from '../currency/cur1.png';
 import cur2 from '../currency/cur2.png';
 
@@ -229,7 +233,8 @@ export const projects = [
   {
     id: '83e31225-b646-4343-8b70-a5e17446955a',
     title: 'Currency Converter',
-    shortDesc: 'A seamless currency conversion tool that provides real-time exchange rates and supports historical data. Perfect for travelers, businesses, and financial enthusiasts.',
+    shortDesc:
+      'A seamless currency conversion tool that provides real-time exchange rates and supports historical data. Perfect for travelers, businesses, and financial enthusiasts.',
     description: `<div class=" max-w-3xl mx-auto">
       <h3 class="text-3xl text-left font-bold text-red-600 dark:text-red-400 mb-6 ">
         Project: Currency Converter
@@ -300,5 +305,51 @@ export const projects = [
     imageSource: [cur1, cur2],
     gitLink: 'https://github.com/BittuKumar183040/currency',
     previewLink: 'https://bittukumar183040.github.io/currency/',
+  },
+  {
+    id: '83e34225-b646-6785-8a55-a5e54656955a',
+    title: 'Chat Application',
+    shortDesc:
+      'A messaging application that uses peer-to-peer (P2P) technology, meaning users communicate directly with each other without relying on a central server to relay messages, thereby enhancing privacy by keeping conversations solely between the sender and receiver devices.',
+    description: `<div class=" max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-green-600 dark:text-green-400 mb-6 ">
+        Project: Chatting Web Application <sup class="text-xs text-red-800"> <span class=" animate-ping">🔴</span>Under&nbsp;Development </sup> 
+      </h3>
+      <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify ">
+        A messaging application that uses peer-to-peer (P2P) technology, meaning users communicate directly with each other without relying on a central server to relay messages, thereby enhancing privacy by keeping conversations solely between the sender and receiver devices.
+      </p>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-green-600 dark:text-green-400">Features</h2>
+        <ul class="list-disc ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li><strong>Private Chatting:</strong> Added Room feature so that, user can have its private chatting.</li>
+          <li><strong>Authentication and Authorization:</strong> Adding different processes that work together to control access to the application.</li>
+          <li><strong>Save Contacts:</strong> Allow user to save users details for furthure contacts.</li>
+          <li><strong>Dark Mode :</strong> App is compatible with dark mode theme.</li>
+        </ul>
+      </section>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-green-600 dark:text-green-400">Technologies Used</h2>
+        <ul class="list-disc ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li><strong>React:</strong> To Create Frontend Application and reusable components.</li>
+          <li><strong>Tailwind CSS:</strong> Styling the application.</li>
+          <li><strong>NodeJS:</strong> open-source, cross-platform JavaScript run-time environment for backend API's</li>
+          <li><strong>Socket.io:</strong> Socket.IO allows bi-directional communication between client and server. Bi-directional communications are enabled when a client has Socket.IO in the browser, and a server has also integrated the Socket.IO package.</li>
+        </ul>
+      </section>
+
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold text-green-600 dark:text-green-400">Future Improvements</h2>
+        <ul class="list-disc ml-6 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
+          <li><strong>Responsive Design:</strong> Enhance mobile and tablet usability.</li>
+          <li><strong>Error Handling:</strong> Display meaningful messages for network or API failures.</li>
+        </ul>
+      </section>
+
+    </div>`,
+    imageSource: [chat1, chat2, chat3],
+    gitLink: 'https://github.com/BittuKumar183040/Chat',
+    previewLink: 'https://chat-karo-aao.vercel.app/',
   },
 ];
