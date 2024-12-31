@@ -11,6 +11,10 @@ import chat1 from '../chat/chat1.png';
 import chat2 from '../chat/chat2.png';
 import chat3 from '../chat/chat3.png';
 
+import qrcode1 from '../qrcode/qrcode1.png';
+import qrcode2 from '../qrcode/qrcode2.png';
+import qrcode3 from '../qrcode/qrcode3.png';
+
 import cur1 from '../currency/cur1.png';
 import cur2 from '../currency/cur2.png';
 
@@ -351,5 +355,108 @@ export const projects = [
     imageSource: [chat1, chat2, chat3],
     gitLink: 'https://github.com/BittuKumar183040/Chat',
     previewLink: 'https://chat-karo-aao.vercel.app/',
+  },
+  {
+    id: '8a98bd96-0426-4d44-84ef-29393d18ed84',
+    title: 'QR Code Generator',
+    shortDesc:
+      'A messaging application that uses peer-to-peer (P2P) technology, meaning users communicate directly with each other without relying on a central server to relay messages, thereby enhancing privacy by keeping conversations solely between the sender and receiver devices.',
+    description: `<div class=" max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-gray-600 dark:text-white mb-6 ">
+        Project: QR Code Generator <sup class="text-xs text-red-800"> <span class=" animate-ping">🔴</span>Under&nbsp;Development </sup> 
+      </h3>
+      <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify ">
+        This project is a simple and responsive QR Code Generator built with React. It allows users to generate QR codes for various types of data, such as text, contacts, locations, and URLs. Users can easily share or download the generated QR code images.
+      </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Features</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium">Generate QR Codes:</span> Uses an API to create QR codes based on user input.</li>
+        <li><span class="font-medium">Share and Download:</span> Easily share or download generated QR codes.</li>
+        <li><span class="font-medium">Supports Multiple Data Types:</span> Text, contacts, location, and URLs.</li>
+        <li><span class="font-medium">Responsive Design:</span> Optimized for all screen sizes.</li>
+        <li><span class="font-medium">Smooth Animations:</span> Enhanced user experience with animations.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Technologies Used</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Tailwind CSS</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React Icons</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Spring Web Animations</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>API Interaction</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Usage</h2>
+      <p class="text-gray-700 mb-4 dark:text-gray-400">Follow these steps to use the QR Code Generator:</p>
+      <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li>Enter the data (text, contact details, location, or URL).</li>
+        <li>View the generated QR code in the "Result" section.</li>
+        <li>Use buttons to download or share the QR code.</li>
+      </ol>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Project Structure</h2>
+      <pre class="bg-gray-800 text-gray-200 rounded-lg p-4 overflow-x-auto dark:bg-gray-700 dark:text-textLight"><code>qr-code-generator/
+├── public/
+├── src/
+│   ├── assets/
+│   │   └── qr.png        
+│   ├── components/
+│   │   └── Parameters.js 
+│   ├── App.css           
+│   ├── App.js            
+│   └── index.js          
+└── package.json         
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Acknowledgments</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><a href="https://goqr.me/api/" class="text-blue-600 hover:underline dark:text-blue-400">QR Code Generator API</a> for providing the QR code service.</li>
+        <li>The React community for their resources and support.</li>
+        <li>Tailwind CSS for making responsive design effortless.</li>
+      </ul>
+    </section>
+
+    <footer class="pt-8 border-t text-center dark:border-gray-700">
+      <p class="text-gray-700 font-medium dark:text-gray-300">Bittu Kumar</p>
+      <a href="https://github.com/BittuKumar183040" class="text-blue-600 hover:underline dark:text-blue-400">GitHub Profile</a>
+    </footer>
+  </div>`,
+    imageSource: [qrcode1, qrcode2, qrcode3],
+    gitLink: 'https://github.com/BittuKumar183040/QR_code',
+    previewLink: 'https://qr-code-adv.vercel.app',
   },
 ];
