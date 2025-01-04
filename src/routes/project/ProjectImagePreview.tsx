@@ -10,7 +10,7 @@ const ProjectImagePreview = ({ images }: any) => {
     <div className=" flex items-start gap-4 md:flex-row flex-col-reverse">
       <div className=" flex md:flex-col flex-row gap-3 justify-center items-center">
         {images.map((item: string, idx: number) => (
-          <div className="w-full md:w-28 max-w-32 overflow-hidden rounded-lg border border-gray-400">
+          <div className="w-full md:w-28 max-w-32 max-h-20 overflow-hidden rounded-lg border border-gray-400">
             <img
               key={idx}
               onClick={() => handleImageChange(idx)}
@@ -22,8 +22,8 @@ const ProjectImagePreview = ({ images }: any) => {
           </div>
         ))}
       </div>
-      <div className=" lg:w-[500px] text-center flex justify-around rounded-xl overflow-hidden">
-        <img src={images[index]} alt="" className=" bg-black" />
+      <div className=" lg:w-[500px] flex justify-center w-full">
+        <img src={images[index]} alt="" className=' rounded-xl border shadow-xl' />
       </div>
     </div>
   );

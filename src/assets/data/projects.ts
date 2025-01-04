@@ -286,11 +286,11 @@ export const projects = [
         <h2 class="text-2xl font-semibold text-[#ff0000] dark:text-[#ffa4a4]">File Structure</h2>
         <pre class="bg-[#fff] dark:bg-gray-800 text-[#ff0000] dark:text-[#ffa4a4] p-4 rounded mt-2">
           currency-converter/
-          ├── index.html    # Main HTML structure
-          ├── style.css     # Styling (if applicable)
-          ├── script.js     # Core JavaScript functionality
-          └── assets/       # Additional assets (e.g., favicon)
-              </pre>
+  ├── index.html
+  ├── style.css     # Styling
+  ├── script.js     # Core JS functionality
+  └── assets/       # Additional assets
+          </pre>
       </section>
 
       <section class="mb-6">
