@@ -23,7 +23,11 @@ const ProjectImagePreview = ({ images }: any) => {
         ))}
       </div>
       <div className=" lg:w-[500px] flex justify-center w-full">
-        <img src={images[index]} alt="" className=' rounded-xl border shadow-xl' />
+        <img
+          src={images[index]}
+          alt=""
+          className=" rounded-xl border shadow-xl"
+        />
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ const Project = () => {
   const project = projects.find((project) => project.id === id);
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (!project) return <FourOFour />;
-  console.log(project);
   return (
     <div className=" container relative mx-auto pt-32 gap-8 px-2 md:px-0 ">
       <div

@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
   const [hoverStyle, api] = useSpring(() => ({
     scale: 1,
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
     config: { duration: 100 },
   }));
 
@@ -56,31 +56,34 @@ const ProjectCard: React.FC<ProjectProps> = ({
     <animated.div
       ref={ref}
       onMouseEnter={() =>
-        api.start({ scale: 1.01, boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.2)' })
+        api.start({ scale: 1.01, boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.3)' })
       }
       onMouseLeave={() =>
-        api.start({ scale: 1, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)' })
+        api.start({ scale: 1, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' })
       }
       style={{ ...projectCardStyle, ...hoverStyle }}
       onClick={handleClick}
-      className="card cursor-pointer light:glass dark:bg-gray-900 md:w-80 lg:w-96 w-full justify-around"
+      className="bg-gray-100 dark:bg-gray-900
+        cursor-pointer light:glass justify-around rounded-xl overflow-hidden
+        w-52 md:w-80
+        "
     >
-      <div
-        className={`carousel select-none carousel-vertical hover "cursor-pointer" rounded-box h-56 flex flex-col bg-slate-200`}
-      >
+      <div className="select-none h-40">
         <img
-          className="carousel-item h-full w-full object-cover object-top pointer-events-none"
+          className=" h-full w-full object-cover object-top pointer-events-none"
           src={imageSource[0]}
           alt={''}
           loading="lazy"
         />
       </div>
-      <div className="card-body dark:text-white p-4 md:p-5 ">
-        <h2 className="card-title text-md">{title}</h2>
-        <div className="dark:text-gray-300 h-20 text-sm overflow-clip ">
+      <div className="dark:text-white p-4 md:p-5 w-full ">
+        <h2 className="md:text-md md:text-left text-center font-bold text-sm md:mb-2 mb-0 ">
+          {title}
+        </h2>
+        <div className="dark:text-gray-300 h-20 text-sm overflow-clip hidden md:block ">
           {shortDesc}
         </div>
-        <div className="card-actions flex-1 justify-end items-end mt-4 flex gap-5 ">
+        <div className="flex-1 justify-end items-end mt-4 flex gap-5 ">
           {gitLink && (
             <div className=" tooltip tooltip-top" data-tip="Github">
               <FaGithub
@@ -91,7 +94,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
             </div>
           )}
           {previewLink && (
-            <div className=" tooltip tooltip-top" data-tip="Project Preview">
+            <div className=" tooltip tooltip-left" data-tip="Project Preview">
               <FaRegEye
                 className=" cursor-pointer"
                 onClick={(e) => handleLinkClick(e, previewLink)}

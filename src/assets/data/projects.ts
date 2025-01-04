@@ -27,12 +27,12 @@ import calc3 from '../calc/calc3.png';
 export const projects = [
   {
     id: '48825cc4-583a-428f-bfd0-f3f062d1692a',
-    title: 'Shopping Website | ShowWithUs.',
+    title: 'Ecommerce Website',
     shortDesc:
       'E-commerce website demonstrates my ability to create aesthetic and functional web applications, providing a seamless user experience with advanced modern features.',
     description: `<div class=" max-w-3xl mx-auto">
       <h2 class="text-3xl text-left font-bold text-blue-600 dark:text-blue-400 mb-6 ">
-        E-commerce Website Overview
+        E-commerce | Shopping Website
       </h2>
       <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
         I developed a fully functional <b>E-commerce website</b> incorporating various features to enhance the shopping experience. This project demonstrates my expertise in <b>HTML</b>, <b>CSS</b>, and <b>JavaScript</b>.
@@ -143,7 +143,7 @@ export const projects = [
     id: '4626bae8-3fb8-481c-a6dd-22d7e3e9cd53',
     title: 'Tic Tac Toe',
     shortDesc:
-      '-An interactive tic tac toe game with smooth animation build using Vanilla Javascript, HTML and CSS',
+      'An interactive tic tac toe game with smooth animation build using Vanilla Javascript, HTML and CSS',
     description: `<div class=" max-w-3xl mx-auto">
       <h3 class="text-3xl text-left font-bold text-blue-600 dark:text-blue-400 mb-6 ">
         Project: Tic-Tac-Toe Game
@@ -198,15 +198,15 @@ export const projects = [
     title: 'Advice Generator App',
     shortDesc: 'By using APIs, this app generates a random advice for you.',
     description: `<div class=" max-w-3xl mx-auto">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
-        Advice Generator App
+      <h3 class="text-3xl font-semibold text-green-600 dark:text-green-400 mb-4">
+        Project : Advice Generator
       </h3>
       <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
         This app provides random advice for each day, with an option for users to fetch new advice at the click of a button.
       </p>
       <div class="space-y-4 text-gray-800 dark:text-gray-300">
         <div>
-          <h4 class="text-lg font-bold text-blue-700 dark:text-blue-300 mb-2">
+          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
             HTML
           </h4>
           <ul class="list-disc pl-5 space-y-1">
@@ -215,7 +215,7 @@ export const projects = [
           </ul>
         </div>
         <div>
-          <h4 class="text-lg font-bold text-blue-700 dark:text-blue-300 mb-2">
+          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
             CSS
           </h4>
           <ul class="list-disc pl-5 space-y-1">
@@ -224,7 +224,7 @@ export const projects = [
           </ul>
         </div>
         <div>
-          <h4 class="text-lg font-bold text-blue-700 dark:text-blue-300 mb-2">
+          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
             Vanilla JavaScript
           </h4>
           <ul class="list-disc pl-5 space-y-1">
