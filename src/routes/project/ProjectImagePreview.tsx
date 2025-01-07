@@ -10,9 +10,8 @@ const ProjectImagePreview = ({ images }: any) => {
     <div className=" flex items-start gap-4 md:flex-row flex-col-reverse">
       <div className=" flex md:flex-col flex-row gap-3 justify-center items-center">
         {images.map((item: string, idx: number) => (
-          <div className="w-full md:w-28 max-w-32 max-h-20 overflow-hidden rounded-lg border border-gray-400">
+          <div key={idx} className="w-full md:w-28 max-w-32 max-h-20 overflow-hidden rounded-lg border border-gray-400">
             <img
-              key={idx}
               onClick={() => handleImageChange(idx)}
               className="cursor-pointer transition-all 
                 hover:opacity-95 hover:scale-105"
