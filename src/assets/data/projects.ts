@@ -24,7 +24,92 @@ import calc1 from '../calc/calc1.png';
 import calc2 from '../calc/calc2.png';
 import calc3 from '../calc/calc3.png';
 
+import renderer1 from '../renderer/renderer1.jpg';
+import renderer2 from '../renderer/renderer2.jpg';
+import renderer3 from '../renderer/renderer3.jpg';
+
 export const projects = [
+  {
+    id: 'f3083360-bbb2-4a48-be19-2323456347e975',
+    title: '3D Model Renderer',
+    shortDesc:
+      'This 3D Visualization Application is a powerful tool designed to provide a seamless experience for viewing and interacting with various types of 3D models.',
+    description: `<div class=" max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-gray-600 dark:text-white mb-6 ">
+        Project: 3D Model Visualization
+      </h3>
+      <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify ">
+        This Application is a powerful tool designed to provide a seamless experience for viewing and interacting with various types of 3D models. Whether you're working with GLB, FBX, or other popular 3D file formats, this application allows you to effortlessly load, view, and explore models in a dynamic and intuitive interface.
+      </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Features</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium"Support for Multiple 3D File Formats:</span> Easily visualize and interact with models in GLB, FBX, and a range of other industry-standard formats. </li>
+        <li><span class="font-medium">Interactive 3D Viewer:</span> Rotate, zoom, and pan your models to get the perfect view. Explore your 3D files from every angle and detail. -Real-Time Rendering: Enjoy high-quality real-time rendering of your 3D models with the ability to tweak lighting, textures, and materials on the fly. -User-Friendly Interface: A simple and intuitive interface that allows users to load and manipulate 3D models with ease. -Optimized for Performance: Built to handle complex 3D assets without compromising on speed or responsiveness, ensuring smooth and fluid performance.URLs.</li>
+        <li><span class="font-medium">Responsive Design:</span> Optimized for use on various screen sizes.</li>
+        <li><span class="font-medium">Smooth Animations:</span> Includes animation effects for an enhanced user experience.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Technologies Used</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-blue-800" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React Three Fiber</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React Three Drui</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Tailwind CSS</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React Icons</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Three Js</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Visulization Tool</span>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="pt-8 border-t text-center dark:border-gray-700">
+      <p class="text-gray-700 font-medium dark:text-gray-300">Bittu Kumar</p>
+      <a href="https://github.com/BittuKumar183040" class="text-blue-600 hover:underline dark:text-blue-400">GitHub Profile</a>
+    </footer>
+  </div>`,
+    imageSource: [renderer1, renderer2, renderer3],
+    gitLink: 'https://github.com/BittuKumar183040/3DRenderer',
+    previewLink: 'https://3d-rr.vercel.app/',
+  },
   {
     id: '48825cc4-583a-428f-bfd0-f3f062d1692a',
     title: 'Ecommerce Website',
@@ -192,51 +277,6 @@ export const projects = [
     imageSource: [tic1, tic2, tic3],
     gitLink: 'https://github.com/BittuKumar183040/tictac',
     previewLink: 'https://bittukumar183040.github.io/tictac',
-  },
-  {
-    id: '83e31225-b967-4343-8b70-a5e17446955a',
-    title: 'Advice Generator App',
-    shortDesc: 'By using APIs, this app generates a random advice for you.',
-    description: `<div class=" max-w-3xl mx-auto">
-      <h3 class="text-3xl font-semibold text-green-600 dark:text-green-400 mb-4">
-        Project : Advice Generator
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-        This app provides random advice for each day, with an option for users to fetch new advice at the click of a button.
-      </p>
-      <div class="space-y-4 text-gray-800 dark:text-gray-300">
-        <div>
-          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
-            HTML
-          </h4>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><i>Semantic Structure</i>: Clean and organized HTML for easy maintenance.</li>
-            <li><i>Accessibility</i>: Proper use of ARIA roles and tags.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
-            CSS
-          </h4>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><i>Responsive Design</i>: Optimized for different screen sizes.</li>
-            <li><i>Modern Styling</i>: Use of flexbox and grid for layout.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
-            Vanilla JavaScript
-          </h4>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><i>JS Events</i>: Interactive button click to fetch new advice.</li>
-            <li><i>API Handling</i>: Fetching random advice from a public API.</li>
-          </ul>
-        </div>
-      </div>
-    </div>`,
-    imageSource: [adv],
-    gitLink: 'https://github.com/BittuKumar183040/Advice-Generator',
-    previewLink: 'https://bittukumar183040.github.io/Advice-Generator/',
   },
   {
     id: '83e31225-b646-4343-8b70-a5e17446955a',
@@ -549,5 +589,50 @@ export const projects = [
     imageSource: [calc1, calc2, calc3],
     gitLink: 'https://github.com/BittuKumar183040/calculator',
     previewLink: 'https://calceval.vercel.app',
+  },
+  {
+    id: '83e31225-b967-4343-8b70-a5e17446955a',
+    title: 'Advice Generator App',
+    shortDesc: 'By using APIs, this app generates a random advice for you.',
+    description: `<div class=" max-w-3xl mx-auto">
+      <h3 class="text-3xl font-semibold text-green-600 dark:text-green-400 mb-4">
+        Project : Advice Generator
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+        This app provides random advice for each day, with an option for users to fetch new advice at the click of a button.
+      </p>
+      <div class="space-y-4 text-gray-800 dark:text-gray-300">
+        <div>
+          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
+            HTML
+          </h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><i>Semantic Structure</i>: Clean and organized HTML for easy maintenance.</li>
+            <li><i>Accessibility</i>: Proper use of ARIA roles and tags.</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
+            CSS
+          </h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><i>Responsive Design</i>: Optimized for different screen sizes.</li>
+            <li><i>Modern Styling</i>: Use of flexbox and grid for layout.</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
+            Vanilla JavaScript
+          </h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><i>JS Events</i>: Interactive button click to fetch new advice.</li>
+            <li><i>API Handling</i>: Fetching random advice from a public API.</li>
+          </ul>
+        </div>
+      </div>
+    </div>`,
+    imageSource: [adv],
+    gitLink: 'https://github.com/BittuKumar183040/Advice-Generator',
+    previewLink: 'https://bittukumar183040.github.io/Advice-Generator/',
   },
 ];

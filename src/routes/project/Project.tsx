@@ -4,12 +4,17 @@ import FourOFour from '../../components/FourOFour';
 import ProjectImagePreview from './ProjectImagePreview';
 import { FaGithub, FaRegEye } from 'react-icons/fa6';
 import { IoIosArrowBack } from 'react-icons/io';
+import useDocumentTitle from '../documentTitle/ChangeTitle';
 
 const Project = () => {
   let { id } = useParams();
   const project = projects.find((project) => project.id === id);
+
+  useDocumentTitle(project?.title)
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (!project) return <FourOFour />;
+
   return (
     <div className=" container relative mx-auto pt-32 gap-8 px-2 md:px-0 ">
       <div
