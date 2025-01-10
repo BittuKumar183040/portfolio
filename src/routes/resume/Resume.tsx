@@ -188,13 +188,15 @@ const Resume = () => {
 
   useDocumentTitle('Resume | Bittu Kumar');
 
-  return (
-    <div className=" container m-auto max-w-[1000px] py-28 dark:text-white">
+  return (<>
+    <div className=' sticky top-[54px] float-right z-50 mr-5'>
       <DownloadResume />
+    </div>
+    <div className=" container m-auto p-5 max-w-[1000px] py-28 dark:text-white">
       <div className=" absolute top-0">
         <BackBtn />
       </div>
-      <div className="md:p-20 p-4 flex flex-col gap-4 md:border rounded-lg">
+      <div className="md:p-20 p-4 flex flex-col gap-4 md:border bg-gray-100 dark:bg-gray-950 rounded-lg">
         {/* Heading */}
         <section className=" flex flex-col items-center w-full ">
           <h1 className=" text-4xl tracking-wider">{details.name}</h1>
@@ -310,6 +312,7 @@ const Resume = () => {
         )}
       </div>
     </div>
+  </>
   );
 };
 

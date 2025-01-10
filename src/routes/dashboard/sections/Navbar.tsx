@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="flex bg-white bg-opacity-40 backdrop-blur-sm shadow-md z-50 fixed top-0 w-full p-3 px-4
+      className="flex bg-white bg-opacity-40 backdrop-blur-sm shadow-md border-b border-gray-300 z-50 fixed top-0 w-full p-3 px-4
             dark:bg-black dark:text-white dark:bg-opacity-90
             "
     >
