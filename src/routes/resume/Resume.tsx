@@ -185,134 +185,132 @@ const details: any = {
 };
 
 const Resume = () => {
-
   useDocumentTitle('Resume | Bittu Kumar');
 
-  return (<>
-    <div className=' sticky top-[54px] float-right z-50 mr-5'>
+  return (
+    <>
       <DownloadResume />
-    </div>
-    <div className=" container m-auto p-5 max-w-[1000px] py-28 dark:text-white">
-      <div className=" absolute top-0">
-        <BackBtn />
-      </div>
-      <div className="md:p-20 p-4 flex flex-col gap-4 md:border bg-gray-100 dark:bg-gray-950 rounded-lg">
-        {/* Heading */}
-        <section className=" flex flex-col items-center w-full ">
-          <h1 className=" text-4xl tracking-wider">{details.name}</h1>
-          <p className=" text-2xl">{details.location}</p>
-          <div className=" flex flex-wrap justify-center mt-4">
-            {Object.keys(details.contacts).map((contact: string, idx) => (
-              <a
-                className=" mx-2 underline text-blue-500"
-                key={idx + contact}
-                href={details.contacts[contact].url}
-              >
-                {details.contacts[contact].label}
-              </a>
-            ))}
-          </div>
-        </section>
-        {Object.entries(details.sections).map(
-          ([key, section]: [string, any]) => (
-            <section key={key}>
-              <h1 className=" text-xl font-bold tracking-wide">{key}</h1>
-              <div className=" h-0.5 my-2 w-full bg-black dark:bg-gray-500"></div>
+      <div className=" container m-auto p-5 max-w-[1000px] py-28 dark:text-white">
+        <div className=" absolute top-0">
+          <BackBtn />
+        </div>
+        <div className="md:p-20 p-4 flex flex-col gap-4 md:border bg-gray-100 dark:bg-gray-950 rounded-lg">
+          {/* Heading */}
+          <section className=" flex flex-col items-center w-full ">
+            <h1 className=" text-4xl tracking-wider">{details.name}</h1>
+            <p className=" text-xl">{details.location}</p>
+            <div className=" flex flex-wrap justify-center mt-4">
+              {Object.keys(details.contacts).map((contact: string, idx) => (
+                <a
+                  className=" mx-2 underline text-blue-500"
+                  key={idx + contact}
+                  href={details.contacts[contact].url}
+                >
+                  {details.contacts[contact].label}
+                </a>
+              ))}
+            </div>
+          </section>
+          {Object.entries(details.sections).map(
+            ([key, section]: [string, any]) => (
+              <section key={key}>
+                <h1 className=" text-xl font-bold tracking-wide">{key}</h1>
+                <div className=" h-0.5 my-2 w-full bg-black dark:bg-gray-500"></div>
 
-              {section.map((contents: any, idx: number) => (
-                <div key={idx}>
-                  <div className=" flex justify-between items-center mt-2">
-                    <h1 className=" text-xl font-medium">{contents.title}</h1>
+                {section.map((contents: any, idx: number) => (
+                  <div key={idx}>
+                    <div className=" flex justify-between items-center mt-2">
+                      <h1 className=" text-xl font-medium">{contents.title}</h1>
 
-                    {contents.details && (
-                      <div className=" relative group mx-2">
-                        <p className=" cursor-pointer opacity-70 group-hover:rotate-90 rotate-0 transition-all ">
-                          <MdOutlineMore />
-                        </p>
-                        <p
-                          className=" w-56 group-hover:scale-100 group-hover:opacity-100 flex flex-wrap gap-2
+                      {contents.details && (
+                        <div className=" relative group mx-2">
+                          <p className=" cursor-pointer opacity-70 group-hover:rotate-90 rotate-0 transition-all ">
+                            <MdOutlineMore />
+                          </p>
+                          <p
+                            className=" w-56 group-hover:scale-100 group-hover:opacity-100 flex flex-wrap gap-2
                       scale-0 opacity-0 transition-all absolute bottom-7 -left-2 bg-opacity-50 backdrop-blur-sm 
                      bg-slate-100 shadow-md p-2 rounded-md text-xs md:text-sm"
-                        >
-                          <span className=" absolute -bottom-4 left-2 opacity-60 border-8 border-t-gray-300 border-transparent"></span>
-                          {contents.details.map((item: any, idx: any) => (
-                            <span
-                              key={idx}
-                              className=" bg-slate-100 bg-opacity-50 text-gray-600 px-2 rounded-md shadow-inner"
-                            >
-                              {item}
-                            </span>
-                          ))}
+                          >
+                            <span className=" absolute -bottom-4 left-2 opacity-60 border-8 border-t-gray-300 border-transparent"></span>
+                            {contents.details.map((item: any, idx: any) => (
+                              <span
+                                key={idx}
+                                className=" bg-slate-100 bg-opacity-50 text-gray-600 px-2 rounded-md shadow-inner"
+                              >
+                                {item}
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                      )}
+
+                      {contents.links && (
+                        <div className=" flex gap-5">
+                          {Object.entries(contents.links).map(
+                            ([key, link]: [key: string, link: any]) => (
+                              <a
+                                className=" underline text-blue-500 text-xs md:text-sm"
+                                key={key}
+                                href={link}
+                              >
+                                {key}
+                              </a>
+                            ),
+                          )}
+                        </div>
+                      )}
+
+                      <div className=" flex-1 text-right">
+                        <p className=" text-sm font-medium">{contents.date}</p>
+                      </div>
+                    </div>
+
+                    {contents.subtitle && (
+                      <div className=" flex justify-between items-center opacity-80">
+                        <h1 className=" text-md font-medium">
+                          {contents.subtitle.title}
+                        </h1>
+                        <p className=" text-sm font-medium italic">
+                          {contents.subtitle.date}
                         </p>
                       </div>
                     )}
 
-                    {contents.links && (
-                      <div className=" flex gap-5">
-                        {Object.entries(contents.links).map(
-                          ([key, link]: [key: string, link: any]) => (
-                            <a
-                              className=" underline text-blue-500 text-xs md:text-sm"
-                              key={key}
-                              href={link}
-                            >
-                              {key}
-                            </a>
-                          ),
-                        )}
+                    {contents.descList && (
+                      <div className=" w-full px-5">
+                        <table className=" m-auto w-full">
+                          {contents.descList.map((lists: any, idx: number) => (
+                            <tbody key={idx}>
+                              <tr>
+                                {lists.map((item: string, idx: number) => (
+                                  <td
+                                    key={idx}
+                                    className=" text-justify py-1 relative"
+                                    style={{ width: '1px' }}
+                                  >
+                                    <span className=" absolute -left-6 scale-50 filter grayscale ">
+                                      🔵
+                                    </span>
+                                    <span
+                                      dangerouslySetInnerHTML={{ __html: item }}
+                                    />
+                                  </td>
+                                ))}
+                              </tr>
+                            </tbody>
+                          ))}
+                        </table>
                       </div>
                     )}
-
-                    <div className=" flex-1 text-right">
-                      <p className=" text-sm font-medium">{contents.date}</p>
-                    </div>
                   </div>
-
-                  {contents.subtitle && (
-                    <div className=" flex justify-between items-center">
-                      <h1 className=" text-md font-medium">
-                        {contents.subtitle.title}
-                      </h1>
-                      <p className=" text-sm font-medium italic">
-                        {contents.subtitle.date}
-                      </p>
-                    </div>
-                  )}
-
-                  {contents.descList && (
-                    <div className=" w-full px-5">
-                      <table className=" m-auto w-full">
-                        {contents.descList.map((lists: any, idx: number) => (
-                          <tbody key={idx}>
-                            <tr>
-                              {lists.map((item: string, idx: number) => (
-                                <td
-                                  key={idx}
-                                  className=" text-justify py-1 relative"
-                                  style={{ width: '1px' }}
-                                >
-                                  <span className=" absolute -left-6 scale-50 filter grayscale ">
-                                    🔵
-                                  </span>
-                                  <span
-                                    dangerouslySetInnerHTML={{ __html: item }}
-                                  />
-                                </td>
-                              ))}
-                            </tr>
-                          </tbody>
-                        ))}
-                      </table>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </section>
-          ),
-        )}
+                ))}
+              </section>
+            ),
+          )}
+        </div>
       </div>
-    </div>
-  </>
+    </>
   );
 };
 
