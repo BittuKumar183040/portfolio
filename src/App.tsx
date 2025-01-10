@@ -4,6 +4,7 @@ import Dashboard from './routes/dashboard/Dashboard';
 import Navbar from './routes/dashboard/sections/Navbar';
 import Project from './routes/project/Project';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Resume from './routes/resume/Resume';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               element={<Project />}
               key={window.location.pathname}
             />
+            <Route path="/curriculumvitae" element={<Resume />} />
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </BrowserRouter>
