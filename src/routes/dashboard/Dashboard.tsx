@@ -4,7 +4,7 @@ import Projects from './sections/Projects';
 import Timeline from './sections/Timeline';
 
 const Dashboard = () => {
-  useDocumentTitle("Bittu Kumar")
+  useDocumentTitle('Bittu Kumar');
   return (
     <div className=" px-6 pb-16">
       <Herosection />

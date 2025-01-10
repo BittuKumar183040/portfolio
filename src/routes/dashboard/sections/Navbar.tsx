@@ -1,7 +1,14 @@
 import DarkModeBtn from '../../../components/DarkModeBtn';
-import DropDown from '../../../components/DropDown';
+import NavBarBtn from '../../../components/NavBarBtn';
+import { MdOutlineDocumentScanner } from 'react-icons/md';
 
 const Navbar = () => {
+  const handleClick = (e: any) => {
+    if (e.target.id === 'Curriculum Vitae') {
+      window.location.href = '/curriculumvitae';
+    }
+  };
+
   return (
     <div
       className="flex bg-white bg-opacity-40 backdrop-blur-sm shadow-md z-50 fixed top-0 w-full p-3 px-4
@@ -13,7 +20,11 @@ const Navbar = () => {
       </div>
       <div className="flex gap-8 items-center">
         <DarkModeBtn />
-        <DropDown />
+        <NavBarBtn
+          title="Curriculum Vitae"
+          icon={<MdOutlineDocumentScanner />}
+          handleClick={handleClick}
+        />
       </div>
     </div>
   );

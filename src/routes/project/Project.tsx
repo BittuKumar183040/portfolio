@@ -1,16 +1,16 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { projects } from '../../assets/data/projects';
 import FourOFour from '../../components/FourOFour';
 import ProjectImagePreview from './ProjectImagePreview';
 import { FaGithub, FaRegEye } from 'react-icons/fa6';
-import { IoIosArrowBack } from 'react-icons/io';
 import useDocumentTitle from '../documentTitle/ChangeTitle';
+import BackBtn from '../../components/BackBtn';
 
 const Project = () => {
   let { id } = useParams();
   const project = projects.find((project) => project.id === id);
 
-  useDocumentTitle(project?.title)
+  useDocumentTitle(project?.title);
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (!project) return <FourOFour />;
@@ -42,12 +42,7 @@ const Project = () => {
           )}
         </div>
       </div>
-      <Link
-        to="/"
-        className=" absolute left-0 md:rounded-lg rounded-r-lg top-16 flex items-center gap-3 border w-fit p-2 px-2 py-1 pr-3 dark:text-white shadow-lg mb-4"
-      >
-        <IoIosArrowBack /> Back
-      </Link>
+      <BackBtn />
       <p className=" text-3xl pb-10 dark:text-white">{project.title}</p>
       <div className="flex flex-col lg:flex-row gap-8 pb-10">
         <ProjectImagePreview images={project.imageSource} />
