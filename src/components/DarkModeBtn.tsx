@@ -26,8 +26,8 @@ const DarkModeBtn = () => {
   return (
     <div className=" relative cursor-pointer" onClick={handleSwitch}>
       <div
-        className={` bg-gray-200 rounded-full h-6 w-12 flex items-center border-2 shadow-inner
-                ${isDark ? 'bg-gray-500 border-gray-500' : 'border-white-200'}
+        className={` bg-gray-200 rounded-full transition-all h-6 w-12 flex items-center border-2 shadow-inner
+                ${isDark ? 'bg-gray-500 border-gray-500 opacity-50' : 'border-white-200'}
                 `}
       >
         {isDark ? (
@@ -38,7 +38,7 @@ const DarkModeBtn = () => {
       </div>
       <div
         className={` absolute h-6 w-6 top-0 transition-all ${isDark ? 'left-6' : 'left-0'} bg-white rounded-full border-2 border-gray-200
-                ${isDark ? 'border-gray-500' : ''}
+                ${isDark ? 'border-gray-500 opacity-50' : ''}
 
                 `}
       ></div>
