@@ -33,7 +33,7 @@ const DarkModeBtn = () => {
         {isDark ? (
           <MdDarkMode className=" swap-on text-white ml-1" />
         ) : (
-          <CiLight className=" swap-off w-full ml-5 text-black" />
+          <CiLight className=" swap-off w-full ml-5 text-gray-800" />
         )}
       </div>
       <div

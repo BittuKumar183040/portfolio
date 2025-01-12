@@ -22,20 +22,19 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-white dark:bg-gray-950">
-        {transitions((styles, item) => (
-          <animated.div
-            style={{ ...styles, position: 'absolute', width: '100%' }}
-          >
-            <Routes location={item}>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/project/:id" element={<Project />} />
-              <Route path="/curriculumvitae" element={<Resume />} />
-              <Route path="*" element={<FourOFour />} />
-            </Routes>
-          </animated.div>
-        ))}
-      </div>
+      {transitions((styles, item) => (
+        <animated.div
+          className={'bg-white dark:bg-gray-950'}
+          style={{ ...styles, position: 'absolute', width: '100%' }}
+        >
+          <Routes location={item}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/project/:id" element={<Project />} />
+            <Route path="/curriculumvitae" element={<Resume />} />
+            <Route path="*" element={<FourOFour />} />
+          </Routes>
+        </animated.div>
+      ))}
       <MovetoTop />
     </>
   );

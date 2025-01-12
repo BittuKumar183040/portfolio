@@ -1,5 +1,5 @@
 import { FaGithub } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RiContactsLine } from 'react-icons/ri';
 import { FaLinkedinIn } from 'react-icons/fa6';
 
@@ -9,6 +9,11 @@ function ConnectBtn() {
   const handleExpand = () => {
     setExpand(!expand);
   };
+  useEffect(() => {
+    if (innerWidth < 700) {
+      setExpand(true);
+    }
+  }, []);
 
   return (
     <div className="flex gap-2 mt-10 md:flex-row flex-col items-center md:justify-start justify-center ">
@@ -16,7 +21,7 @@ function ConnectBtn() {
         onClick={handleExpand}
         className="btn btn-sm btn-outline bg-white transition-colors duration-200 ease-linear mr-4
           dark:text-white dark:bg-gray-900 dark:border-white
-          hover:dark:bg-gray-200 hover:dark:text-black"
+          hover:dark:bg-gray-200 hover:dark:text-gray-800"
       >
         <RiContactsLine className="mr-1" />
         <span>Get in Touch</span>
@@ -45,7 +50,7 @@ function ConnectBtn() {
           }
           className=" rounded-full p-1.5 cursor-pointer transition-colors duration-200 ease-linear
           hover:bg-gray-800 hover:text-white
-          dark:text-white dark:hover:text-black dark:hover:bg-gray-200"
+          dark:text-white dark:hover:text-gray-800 dark:hover:bg-gray-200"
         />
       </div>
     </div>

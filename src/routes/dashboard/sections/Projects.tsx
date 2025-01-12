@@ -1,15 +1,14 @@
 import ProjectCard from '../../../components/ProjectCard';
 import { projects } from '../../../assets/data/projects';
+import SectionHeading from '../../../components/SectionHeading';
 
 const Projects = () => {
   return (
     <section className=" container mx-auto mt-4 pb-10">
-      <h1 className="text-2xl md:text-2xl lg:text-3xl font-bold text-red-600 text-center text-shadow-md">
-        Projects
-      </h1>
-      <h1 className="text-md md:text-md lg:text-xl font-bold text-red-600 text-center opacity-80 mb-6 text-shadow dark:text-white">
-        List of all the project that I have build in past years.
-      </h1>
+      <SectionHeading
+        heading="Projects"
+        subHeading="List of all the project that I have build in past years."
+      />
       <div className=" flex gap-4 flex-wrap justify-around">
         {projects.map((project) => (
           <ProjectCard

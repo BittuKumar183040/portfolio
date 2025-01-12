@@ -12,12 +12,11 @@ const DownloadResume = () => {
   return (
     <div
       onClick={handleResumeDownload}
-      className=" fixed top-[53px] text-sm right-6 flex gap-4 border border-t-0 border-gray-300 items-center cursor-pointer z-50 
-      shadow-lg rounded-b-lg p-1 px-5 pb-2
+      className=" absolute top-6 right-6 text-sm flex gap-4 border items-center cursor-pointer
+      shadow-lg p-1 w-fit rounded-md
       hover:shadow transition-all dark:shadow-gray-800 dark:bg-black bg-white dark:text-white"
     >
-      <FiDownload />
-      <p>Download</p>
+      <FiDownload size={25} className=" p-1" />
     </div>
   );
 };

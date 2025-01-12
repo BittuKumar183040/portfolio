@@ -189,13 +189,13 @@ const Resume = () => {
 
   return (
     <>
-      <DownloadResume />
       <div className=" container m-auto p-5 max-w-[1000px] py-28 dark:text-white">
-        <div className=" absolute top-0">
+        <div className=" md:absolute top-0">
           <BackBtn />
         </div>
-        <div className="md:p-20 p-4 flex flex-col gap-4 md:border bg-gray-100 dark:bg-gray-950 rounded-lg">
+        <div className=" relative md:p-20 p-4 flex flex-col gap-4 md:border bg-gray-100 dark:bg-gray-950 rounded-lg">
           {/* Heading */}
+          <DownloadResume />
           <section className=" flex flex-col items-center w-full ">
             <h1 className=" text-4xl tracking-wider">{details.name}</h1>
             <p className=" text-xl">{details.location}</p>

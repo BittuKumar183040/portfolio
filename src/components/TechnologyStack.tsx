@@ -1,36 +1,39 @@
-const TechnologyStack = () => {
+const StackSection = ({ title, stack }: any) => {
   return (
-    <>
-      <strong className=" opacity-70">Technology Stack:</strong>
-      <div className="space-y-2 ml-2">
-        <div>
-          <h3 className="text-md font-semibold text-blue-400">Frontend</h3>
-          <p className="">
-            React, JavaScript, Redux, Three.js, CSS (SCSS, Tailwind,
-            Styled-components), Responsive Design, API Handling (fetch, axios).
+    <div>
+      <h3 className={`text-sm font-semibold my-1 tracking-wider`}>{title}</h3>
+      <div className=" flex gap-2 flex-wrap text-sm ml-2">
+        {stack.split(',').map((item: string) => (
+          <p
+            key={item}
+            className="px-3 py-0.5 rounded-full h-fit w-fit dark:bg-gray-600 bg-gray-200 text-sm"
+          >
+            {item.trim()}
           </p>
-        </div>
-        <div>
-          <h3 className="text-md font-semibold text-green-400">Backend</h3>
-          <p className="">
-            Python, Django, FastAPI, SQLAlchemy, JSON, Data Processing, Celery,
-            Socket.IO.
-          </p>
-        </div>
-        <div>
-          <h3 className="text-md font-semibold text-yellow-400">Databases</h3>
-          <p className="">MySQL, Postgres, MongoDB.</p>
-        </div>
-        <div>
-          <h3 className="text-md font-semibold text-purple-400">DevOps</h3>
-          <p className="">AWS, S3, ECR, Docker, Docker Compose, Lens.</p>
-        </div>
-        <div>
-          <h3 className="text-md font-semibold text-pink-400">UI</h3>
-          <p className="">Figma, Fig-jam Board, Miro, Photoshop, Blender 3D.</p>
-        </div>
+        ))}
       </div>
-    </>
+    </div>
+  );
+};
+
+const TechnologyStack = () => {
+  const tecknologies: Record<string, string> = {
+    Frontend:
+      'Redux, Three.js, CSS, SCSS, Responsive Design, Styled-components, Tailwind, API Handling',
+    Backend:
+      'Python, Django, FastAPI, JSON, SQLAlchemy, Data Processing, Celery, Socket.IO',
+    Databases: 'MySQL, Postgres, MongoDB',
+    DevOps: 'AWS, S3, ECR, Docker, Lens, Docker Compose',
+    'UI/UX': 'Figma, Blender 3D, Fig-jam Board, Photoshop, Miro',
+  };
+
+  return (
+    <div>
+      <strong>Technology Stack:</strong>
+      {Object.entries(tecknologies).map(([key, value]) => (
+        <StackSection key={key} title={key} stack={value} />
+      ))}
+    </div>
   );
 };
 

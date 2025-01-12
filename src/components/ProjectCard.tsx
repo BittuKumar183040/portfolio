@@ -39,7 +39,6 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
   const [hoverStyle, api] = useSpring(() => ({
     scale: 1,
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
     config: { duration: 100 },
   }));
 
@@ -47,7 +46,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0px)' : 'translateY(50px)',
     config: {
-      duration: 500,
+      duration: 1000,
       easing: easings.easeOutQuad,
     },
   });
@@ -55,22 +54,18 @@ const ProjectCard: React.FC<ProjectProps> = ({
   return (
     <animated.div
       ref={ref}
-      onMouseEnter={() =>
-        api.start({ scale: 1.01, boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.3)' })
-      }
-      onMouseLeave={() =>
-        api.start({ scale: 1, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' })
-      }
+      onMouseEnter={() => api.start({ scale: 0.95 })}
+      onMouseLeave={() => api.start({ scale: 1 })}
       style={{ ...projectCardStyle, ...hoverStyle }}
       onClick={handleClick}
-      className="bg-gray-100 dark:bg-gray-900
-        cursor-pointer light:glass justify-around rounded-xl overflow-hidden
-        w-52 md:w-80
+      className="bg-gray-100 dark:bg-gray-900 group
+        cursor-pointer light:glass justify-around rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-800 shadow-inner 
+        w-52 md:w-80 
         "
     >
-      <div className="select-none h-40">
+      <div className="select-none h-40 dark:opacity-80 group-hover:opacity-100 transition-opacity overflow-hidden">
         <img
-          className=" h-full w-full object-cover object-top pointer-events-none"
+          className=" h-full w-full object-cover object-top pointer-events-none shadow-inner group-hover:scale-110 transition-all "
           src={imageSource[0]}
           alt={''}
           loading="lazy"

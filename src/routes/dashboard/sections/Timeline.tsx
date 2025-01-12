@@ -1,20 +1,19 @@
+import SectionHeading from '../../../components/SectionHeading';
 import TechnologyStack from '../../../components/TechnologyStack';
 
 const Timeline = () => {
   return (
     <section className=" container mx-auto mt-4 mb-20 ">
-      <h1 className="text-2xl md:text-2xl lg:text-3xl font-bold text-red-600 text-center py-2">
-        Experience
-      </h1>
+      <SectionHeading heading="Experience" />
       <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
         <li>
           <hr />
-          <div className="timeline-middle">
+          <div className="timeline-middle dark:text-gray-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5 dark:text-white"
+              className="h-5 w-5"
             >
               <path
                 fillRule="evenodd"
@@ -27,10 +26,10 @@ const Timeline = () => {
             <time className="font-mono italic dark:text-white">
               January 2023
             </time>
-            <div className="text-lg font-black dark:text-gray-200">
+            <div className="text-lg font-black dark:text-gray-200 mr-2">
               BosonQ Psi PVT. LTD.
             </div>
-            <p className=" text-md dark:text-gray-400">
+            <p className=" text-md dark:text-gray-400 mr-2">
               With 2 years of experience at this company, I play a key role in
               the software team, handling both frontend and backend development
               for Beta 2.0. I work with technologies like React JS, Fast API,
