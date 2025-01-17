@@ -635,4 +635,90 @@ export const projects = [
     gitLink: 'https://github.com/BittuKumar183040/Advice-Generator',
     previewLink: 'https://bittukumar183040.github.io/Advice-Generator/',
   },
+  {
+    id: 'g1083460-bbb2-4a48-bk89-258982c8e975',
+    title: 'Snake Game',
+    shortDesc:
+      'This is a snake game project build using React and have different control to handle snake.',
+    description: `<div class=" max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-gray-600 dark:text-white mb-6 ">
+        Project: Calculator
+      </h3>
+      <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify ">
+        A react based 2D snake game, which have support for different inputs like touch contol, Vertual input and key board input. This have also point score and High score storage.
+      </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Features</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium"Contols:</span> Support different input controls. Which includes Touch guestures, Keyboard and <li>
+        <li><span class="font-medium">High Score:</span> Preserve high score result.</li>
+        <li><span class="font-medium">Theme:</span> Added Dark mode for the session.</li>
+        <li><span class="font-medium">Responsive Design:</span> Mobile friendly design and optimized for all screen sizes.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Technologies Used</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Tailwind CSS</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React Icons</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Mobile friendly design</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Error Handling</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Usage</h2>
+      <p class="text-gray-700 mb-4 dark:text-gray-400">Follow these steps to use the Calculator:</p>
+      <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li>Added vertual buttons to control movement and opertations.</li>
+        <li>Preserve High score and keep track of score..</li>
+        <li>Evaluation is used to perferom different operation.</li>
+      </ol>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Acknowledgments</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li>The React community for their resources and support.</li>
+        <li>Tailwind CSS for making responsive design effortless.</li>
+      </ul>
+    </section>
+
+    <footer class="pt-8 border-t text-center dark:border-gray-700">
+      <p class="text-gray-700 font-medium dark:text-gray-300">Bittu Kumar</p>
+      <a href="https://github.com/BittuKumar183040" class="text-blue-600 hover:underline dark:text-blue-400">GitHub Profile</a>
+    </footer>
+  </div>`,
+    imageSource: [calc1, calc2, calc3],
+    gitLink: 'https://github.com/BittuKumar183040/snake',
+    previewLink: 'https://snake-game-io.vercel.app/',
+  },
 ];
