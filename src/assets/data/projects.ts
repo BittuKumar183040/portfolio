@@ -18,7 +18,7 @@ import qrcode3 from '../qrcode/qrcode3.png';
 import cur1 from '../currency/cur1.png';
 import cur2 from '../currency/cur2.png';
 
-import adv from '../advice/adv1.jpg';
+import adv from '../advice/adv1.png';
 
 import calc1 from '../calc/calc1.png';
 import calc2 from '../calc/calc2.png';
@@ -28,10 +28,22 @@ import renderer1 from '../renderer/renderer1.jpg';
 import renderer2 from '../renderer/renderer2.jpg';
 import renderer3 from '../renderer/renderer3.jpg';
 
+import weather1 from '../weather/weather1.png';
+import weather2 from '../weather/weather2.png';
+import weather3 from '../weather/weather3.png';
+
+import snake1 from '../snake/snake1.png';
+
+import flappybird1 from '../flappybird/flappybird1.png';
+import flappybird2 from '../flappybird/flappybird2.png';
+import flappybird3 from '../flappybird/flappybird3.png';
+import flappybird4 from '../flappybird/flappybird4.png';
+
 export const projects = [
   {
     id: 'f3083360-bbb2-4a48-be19-2323456347e975',
     title: '3D Model Renderer',
+    group: 'major',
     shortDesc:
       'This 3D Visualization Application is a powerful tool designed to provide a seamless experience for viewing and interacting with various types of 3D models.',
     description: `<div class=" max-w-3xl mx-auto">
@@ -113,6 +125,7 @@ export const projects = [
   {
     id: '48825cc4-583a-428f-bfd0-f3f062d1692a',
     title: 'Ecommerce Website',
+    group: 'major',
     shortDesc:
       'E-commerce website demonstrates my ability to create aesthetic and functional web applications, providing a seamless user experience with advanced modern features.',
     description: `<div class=" max-w-3xl mx-auto">
@@ -227,6 +240,7 @@ export const projects = [
   {
     id: '4626bae8-3fb8-481c-a6dd-22d7e3e9cd53',
     title: 'Tic Tac Toe',
+    group: 'minor',
     shortDesc:
       'An interactive tic tac toe game with smooth animation build using Vanilla Javascript, HTML and CSS',
     description: `<div class=" max-w-3xl mx-auto">
@@ -281,6 +295,7 @@ export const projects = [
   {
     id: '83e31225-b646-4343-8b70-a5e17446955a',
     title: 'Currency Converter',
+    group: 'minor',
     shortDesc:
       'A seamless currency conversion tool that provides real-time exchange rates and supports historical data. Perfect for travelers, businesses, and financial enthusiasts.',
     description: `<div class=" max-w-3xl mx-auto">
@@ -357,6 +372,7 @@ export const projects = [
   {
     id: '83e34225-b646-6785-8a55-a5e54656955a',
     title: 'Chat Application',
+    group: 'major',
     shortDesc:
       'A messaging application that uses peer-to-peer (P2P) technology, meaning users communicate directly with each other without relying on a central server to relay messages, thereby enhancing privacy by keeping conversations solely between the sender and receiver devices.',
     description: `<div class=" max-w-3xl mx-auto">
@@ -403,6 +419,7 @@ export const projects = [
   {
     id: '8a98bd96-0426-4d44-84ef-29393d18ed84',
     title: 'QR Code Generator',
+    group: 'major',
     shortDesc:
       'A messaging application that uses peer-to-peer (P2P) technology, meaning users communicate directly with each other without relying on a central server to relay messages, thereby enhancing privacy by keeping conversations solely between the sender and receiver devices.',
     description: `<div class=" max-w-3xl mx-auto">
@@ -506,6 +523,7 @@ export const projects = [
   {
     id: 'f3083360-bbb2-4a48-be19-258312c7e975',
     title: 'Calculator App',
+    group: 'minor',
     shortDesc:
       'It is used for performing basic mathematical operations like Addition, subtraction, multiplication, and division.',
     description: `<div class=" max-w-3xl mx-auto">
@@ -593,6 +611,7 @@ export const projects = [
   {
     id: '83e31225-b967-4343-8b70-a5e17446955a',
     title: 'Advice Generator App',
+    group: 'minor',
     shortDesc: 'By using APIs, this app generates a random advice for you.',
     description: `<div class=" max-w-3xl mx-auto">
       <h3 class="text-3xl font-semibold text-green-600 dark:text-green-400 mb-4">
@@ -604,16 +623,7 @@ export const projects = [
       <div class="space-y-4 text-gray-800 dark:text-gray-300">
         <div>
           <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
-            HTML
-          </h4>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><i>Semantic Structure</i>: Clean and organized HTML for easy maintenance.</li>
-            <li><i>Accessibility</i>: Proper use of ARIA roles and tags.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
-            CSS
+            Tailwind CSS
           </h4>
           <ul class="list-disc pl-5 space-y-1">
             <li><i>Responsive Design</i>: Optimized for different screen sizes.</li>
@@ -622,7 +632,7 @@ export const projects = [
         </div>
         <div>
           <h4 class="text-lg font-bold text-green-700 dark:text-green-300 mb-2">
-            Vanilla JavaScript
+            React / Next js
           </h4>
           <ul class="list-disc pl-5 space-y-1">
             <li><i>JS Events</i>: Interactive button click to fetch new advice.</li>
@@ -632,17 +642,99 @@ export const projects = [
       </div>
     </div>`,
     imageSource: [adv],
-    gitLink: 'https://github.com/BittuKumar183040/Advice-Generator',
-    previewLink: 'https://bittukumar183040.github.io/Advice-Generator/',
+    gitLink: 'https://github.com/BittuKumar183040/api-library/tree/main/app/advice',
+    previewLink: 'https://apilib-dev.vercel.app/advice',
+  },
+  {
+    id: 'gse23460-bbb2-4a28-bk89-25d982c2e975',
+    title: 'Floppy Bird',
+    group: 'game',
+    shortDesc:
+      'Floppy Bird is a web-based game inspired by the classic Flappy Bird. Built using React, TypeScript, and Phaser for physics, it offers enhanced graphics and smooth gameplay.',
+    description: `<div class="max-w-3xl mx-auto p-6">
+    <h3 class="text-3xl font-bold text-green-600 dark:text-white mb-6">
+      Project: Floppy Bird
+    </h3>
+    <p class="text-base mb-4 text-gray-600 dark:text-gray-300">
+      Floppy Bird is a web-based game inspired by the classic Flappy Bird. Built using React, TypeScript, and Phaser for physics, it offers enhanced graphics and smooth gameplay. It also includes a high score feature with data stored in a MySQL database.
+    </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Features</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium">Three Screens:</span> 
+          <ul class="list-disc ml-10">
+            <li>Starting Screen: Game introduction and start button</li>
+            <li>Game Screen: Main gameplay area with physics-driven interactions</li>
+            <li>Scoreboard: Displays high scores with persistent storage using MySQL</li>
+          </ul>
+        </li>
+        <li><span class="font-medium">Physics Engine:</span> Utilizes Phaser for realistic gravity and collision detection.</li>
+        <li><span class="font-medium">Responsive Design:</span> Optimized for all screen sizes and devices.</li>
+        <li><span class="font-medium">Edge Case Handling:</span> Comprehensive error management for smooth gameplay.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Technologies Used</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>React</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>TypeScript</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Phaser</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Vite</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>MySQL</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Responsive Design</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Usage</h2>
+      <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li>Start the game from the Starting Screen.</li>
+        <li>Control the bird by tapping or pressing a key to fly and avoid obstacles.</li>
+        <li>Check the Scoreboard to see high scores, which are stored in the database.</li>
+      </ol>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Acknowledgments</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li>The React community for valuable resources.</li>
+        <li>Phaser for powerful game physics and rendering.</li>
+        <li>Tailwind CSS for effortless responsive design.</li>
+      </ul>
+    </section>
+
+    <footer class="pt-8 border-t text-center dark:border-gray-700">
+      <p class="text-gray-700 font-medium dark:text-gray-300">Bittu Kumar</p>
+      <a href="https://github.com/BittuKumar183040" class="text-blue-600 hover:underline dark:text-blue-400">GitHub Profile</a>
+    </footer>
+  </div>`,
+    imageSource: [flappybird1, flappybird2, flappybird3, flappybird4],
+    gitLink: 'https://github.com/BittuKumar183040/floppyBird',
+    previewLink: 'https://flappybird-gg.vercel.app/',
   },
   {
     id: 'g1083460-bbb2-4a48-bk89-258982c8e975',
     title: 'Snake Game',
+    group: 'game',
     shortDesc:
       'This is a snake game project build using React and have different control to handle snake.',
     description: `<div class=" max-w-3xl mx-auto">
-      <h3 class="text-3xl text-left font-bold text-gray-600 dark:text-white mb-6 ">
-        Project: Calculator
+      <h3 class="text-3xl text-left font-bold text-green-600 dark:text-white mb-6 ">
+        Project: Snake Game
       </h3>
       <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify ">
         A react based 2D snake game, which have support for different inputs like touch contol, Vertual input and key board input. This have also point score and High score storage.
@@ -651,7 +743,7 @@ export const projects = [
     <section class="mb-8">
       <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Features</h2>
       <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
-        <li><span class="font-medium"Contols:</span> Support different input controls. Which includes Touch guestures, Keyboard and <li>
+        <li><span class="font-medium"Contols:</span> Support different input controls. Which includes Touch guestures, Keyboard and </li>
         <li><span class="font-medium">High Score:</span> Preserve high score result.</li>
         <li><span class="font-medium">Theme:</span> Added Dark mode for the session.</li>
         <li><span class="font-medium">Responsive Design:</span> Mobile friendly design and optimized for all screen sizes.</li>
@@ -717,8 +809,76 @@ export const projects = [
       <a href="https://github.com/BittuKumar183040" class="text-blue-600 hover:underline dark:text-blue-400">GitHub Profile</a>
     </footer>
   </div>`,
-    imageSource: [calc1, calc2, calc3],
+    imageSource: [snake1],
     gitLink: 'https://github.com/BittuKumar183040/snake',
     previewLink: 'https://snake-game-io.vercel.app/',
+  },
+  {
+    id: '33dec02c-4b54-4ad8-9b3e-dea304fb6396',
+    title: 'Weather Map Application',
+    group: 'major',
+    shortDesc:
+      'A dynamic weather map application that allows users to click on any location in the world and get real-time weather details for that point.',
+    description: `<div class=" max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-green-600 dark:text-white mb-6 ">
+        Project: Weather Map Application
+      </h3>
+      <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify ">
+        A dynamic weather map application that allows users to click on any location in the world and get real-time weather details for that point.
+      </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Features</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium"API:</span> Real-time weather details based on selected coordinates. Seamless integration of weather API for up-to-date information</li>
+        <li><span class="font-medium">Drop:</span> Pin selector for quick location selection</li>
+        <li><span class="font-medium">Responsive Design:</span> Responsive UI built with TailwindCSS</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Technologies Used</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>React</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Leaflet.js</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>Tailwind CSS</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <svg class="w-4 h-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0z"></path>
+          </svg>
+          <span>OpenWeather API / Any Weather API</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Usage</h2>
+      <p class="text-gray-700 mb-4 dark:text-gray-400">Follow these steps to use the Calculator:</p>
+      <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li>Click anywhere on the interactive map to get weather details.</li>
+        <li>Use the dropdown selector for quick location selection.</li>
+        <li>View weather details such as temperature, humidity, wind speed, etc.</li>
+      </ol>
+    </section>
+
+  </div>`,
+    imageSource: [weather1, weather2, weather3],
+    gitLink: 'https://github.com/BittuKumar183040/weathermap',
+    previewLink: 'https://weathermaplive.netlify.app/',
   },
 ];

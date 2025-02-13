@@ -54,7 +54,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   return (
     <animated.div
       ref={ref}
-      onMouseEnter={() => api.start({ scale: 0.95 })}
+      onMouseEnter={() => api.start({ scale: 1.05 })}
       onMouseLeave={() => api.start({ scale: 1 })}
       style={{ ...projectCardStyle, ...hoverStyle }}
       onClick={handleClick}
@@ -65,7 +65,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
     >
       <div className="select-none h-40 dark:opacity-80 group-hover:opacity-100 transition-opacity overflow-hidden">
         <img
-          className=" h-full w-full object-cover object-top pointer-events-none shadow-inner group-hover:scale-110 transition-all "
+          className=" h-full w-full object-cover object-top pointer-events-none shadow-inner transition-all "
           src={imageSource[0]}
           alt={''}
           loading="lazy"
