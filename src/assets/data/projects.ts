@@ -642,7 +642,8 @@ export const projects = [
       </div>
     </div>`,
     imageSource: [adv],
-    gitLink: 'https://github.com/BittuKumar183040/api-library/tree/main/app/advice',
+    gitLink:
+      'https://github.com/BittuKumar183040/api-library/tree/main/app/advice',
     previewLink: 'https://apilib-dev.vercel.app/advice',
   },
   {

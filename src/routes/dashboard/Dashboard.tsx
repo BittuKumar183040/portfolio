@@ -1,5 +1,4 @@
 import useDocumentTitle from '../documentTitle/ChangeTitle';
-import Footer from './sections/Footer';
 import Herosection from './sections/Herosection';
 import Projects from './sections/Projects';
 import Timeline from './sections/Timeline';
