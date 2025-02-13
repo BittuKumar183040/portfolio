@@ -1,7 +1,6 @@
 import ProjectCard from '../../../components/ProjectCard';
 import { projects } from '../../../assets/data/projects';
 import SectionHeading from '../../../components/SectionHeading';
-import { useState } from 'react';
 
 const ProjectsItems = ({ group }: any) => {
   const projectList = (key: string) => {
