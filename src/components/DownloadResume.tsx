@@ -1,4 +1,4 @@
-import resume from '../routes/resume/asset/Resume_2024.pdf';
+import resume from '../routes/resume/asset/BittuKumar 2025.pdf';
 import { FiDownload } from 'react-icons/fi';
 
 const DownloadResume = () => {
