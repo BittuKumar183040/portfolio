@@ -37,7 +37,8 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
     {type:'all', label:"All"},
     {type:'major', label:"Major"},
     {type:'minor', label:"Minor"},
-    {type:'games', label:"Games"}
+    {type:'games', label:"Games"},
+    {type:'visualization', label:"Visualization"}
   ]
 
   return (

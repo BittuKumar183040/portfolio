@@ -43,7 +43,7 @@ export const projects = [
   {
     id: 'f3083360-bbb2-4a48-be19-2323456347e975',
     title: '3D Model Renderer',
-    group: 'major',
+    group: 'visualization',
     shortDesc:
       'This 3D Visualization Application is a powerful tool designed to provide a seamless experience for viewing and interacting with various types of 3D models.',
     description: `<div class=" max-w-3xl mx-auto">
