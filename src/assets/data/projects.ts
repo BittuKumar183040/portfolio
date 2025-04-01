@@ -240,7 +240,7 @@ export const projects = [
   {
     id: '4626bae8-3fb8-481c-a6dd-22d7e3e9cd53',
     title: 'Tic Tac Toe',
-    group:'game',
+    group:'games',
     shortDesc:
       'An interactive tic tac toe game with smooth animation build using Vanilla Javascript, HTML and CSS',
     description: `<div class=" max-w-3xl mx-auto">
@@ -649,7 +649,7 @@ export const projects = [
   {
     id: 'gse23460-bbb2-4a28-bk89-25d982c2e975',
     title: 'Floppy Bird',
-    group: 'game',
+    group: 'games',
     shortDesc:
       'Floppy Bird is a web-based game inspired by the classic Flappy Bird. Built using React, TypeScript, and Phaser for physics, it offers enhanced graphics and smooth gameplay.',
     description: `<div class="max-w-3xl mx-auto p-6">
@@ -730,7 +730,7 @@ export const projects = [
   {
     id: 'g1083460-bbb2-4a48-bk89-258982c8e975',
     title: 'Snake Game',
-    group: 'game',
+    group: 'games',
     shortDesc:
       'This is a snake game project build using React and have different control to handle snake.',
     description: `<div class=" max-w-3xl mx-auto">

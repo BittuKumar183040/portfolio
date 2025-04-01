@@ -18,6 +18,8 @@ const App: React.FC = () => {
     config: { duration: 300 },
     keys: location.pathname,
   });
+  
+  console.log("Version - b2.4.1")
 
   return (
     <>

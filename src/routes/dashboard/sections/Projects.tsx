@@ -33,70 +33,35 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
     localStorage.setItem('currentTab', currentTab);
   };
 
+  const tabs = [
+    {type:'all', label:"All"},
+    {type:'major', label:"Major"},
+    {type:'minor', label:"Minor"},
+    {type:'games', label:"Games"}
+  ]
+
   return (
     <div
       role="tablist"
       className="tabs tabs-lifted dark:opacity-80"
       onChange={handleTabChange}
     >
-      <input
-        type="radio"
-        name="my_tabs_2"
-        role="tab"
-        className="tab dark:text-gray-500"
-        aria-label="All"
-        defaultChecked={activeTab === 'all'}
-      />
-      <div
-        role="tabpanel"
-        className="tab-content bg-base-100 border-base-300 rounded-box md:p-6 p-2 pb-6 "
-      >
-        <ProjectsItems group="all" />
-      </div>
-
-      <input
-        type="radio"
-        name="my_tabs_2"
-        role="tab"
-        className="tab dark:text-gray-500"
-        aria-label="Major"
-        defaultChecked={activeTab === 'major'}
-      />
-      <div
-        role="tabpanel"
-        className="tab-content bg-base-100 border-base-300 rounded-box md:p-6 p-2 pb-6"
-      >
-        <ProjectsItems group="major" />
-      </div>
-
-      <input
-        type="radio"
-        name="my_tabs_2"
-        role="tab"
-        className="tab dark:text-gray-500"
-        aria-label="Minor"
-        defaultChecked={activeTab === 'minor'}
-      />
-      <div
-        role="tabpanel"
-        className="tab-content bg-base-100 border-base-300 rounded-box md:p-6 p-2 pb-6"
-      >
-        <ProjectsItems group="minor" />
-      </div>
-      <input
-        type="radio"
-        name="my_tabs_2"
-        role="tab"
-        className="tab dark:text-gray-500"
-        aria-label="Games"
-        defaultChecked={activeTab === 'games'}
-      />
-      <div
-        role="tabpanel"
-        className="tab-content bg-base-100 border-base-300 rounded-box md:p-6 p-2 pb-6"
-      >
-        <ProjectsItems group="game" />
-      </div>
+      {tabs.map((tab)=><>
+        <input
+          type="radio"
+          name="my_tabs_2"
+          role="tab"
+          className="tab dark:text-gray-500"
+          aria-label={tab.label}
+          defaultChecked={activeTab === tab.type}
+        />
+        <div
+          role="tabpanel"
+          className="tab-content bg-base-100 border-base-300 rounded-box md:p-6 p-2 pb-6 "
+        >
+          <ProjectsItems group={tab.type} />
+        </div>
+      </>)}
     </div>
   );
 };
