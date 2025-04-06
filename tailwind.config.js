@@ -10,7 +10,6 @@ export default {
   plugins: [daisyui, textshadow],
   daisyui: {
     themes: false,
-    darkTheme: 'dark',
     base: true,
     styled: true,
     utils: true,

@@ -2,9 +2,7 @@ import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import { motion } from "motion/react"
-import { image } from 'motion/react-client';
-import { transform } from 'motion';
+import { motion } from 'motion/react';
 
 interface ProjectProps {
   id: string;
@@ -36,34 +34,34 @@ const ProjectCard: React.FC<ProjectProps> = ({
   const cardVariants = {
     hover: {
       scale: 1.05,
-      boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)",
-      transition: { type: "spring", stiffness: 300 },
+      boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.2)',
+      transition: { type: 'spring', stiffness: 300 },
     },
   };
 
   const titleVariants = {
     hover: {
       scale: 1.1,
-      transition: { type: "spring", stiffness: 300 },
+      transition: { type: 'spring', stiffness: 300 },
     },
   };
   const imageVariants = {
     hover: {
-      borderRadius: "10px",
+      borderRadius: '10px',
       scale: 1.05,
-      boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)"
+      boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.2)',
     },
   };
   const descVariants = {
     hover: {
       scale: 1.05,
-      transition: { type: "spring", stiffness: 1000 },
+      transition: { type: 'spring', stiffness: 1000 },
     },
   };
   const logoVarients = {
     hover: {
       scale: 1.1,
-      transition: { type: "spring", stiffness: 1000 }
+      transition: { type: 'spring', stiffness: 1000 },
     },
   };
 
@@ -93,10 +91,14 @@ const ProjectCard: React.FC<ProjectProps> = ({
         </motion.h2>
         <motion.div
           variants={descVariants}
-          className="dark:text-gray-300 h-20 text-sm overflow-clip hidden text-justify md:block ">
+          className="dark:text-gray-300 h-20 text-sm overflow-clip hidden text-justify md:block "
+        >
           {shortDesc}
         </motion.div>
-        <motion.div variants={logoVarients} className="flex-1 justify-end items-end mt-4 flex gap-5 ">
+        <motion.div
+          variants={logoVarients}
+          className="flex-1 justify-end items-end mt-4 flex gap-5 "
+        >
           {gitLink && (
             <div className=" tooltip tooltip-top" data-tip="Github">
               <FaGithub

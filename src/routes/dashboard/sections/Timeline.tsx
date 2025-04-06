@@ -1,5 +1,6 @@
 import SectionHeading from '../../../components/SectionHeading';
 import TechnologyStack from '../../../components/TechnologyStack';
+import bqp from '../../../assets/bqp.png';
 
 const Timeline = () => {
   return (
@@ -26,8 +27,11 @@ const Timeline = () => {
             <time className="font-mono italic dark:text-white">
               January 2023
             </time>
-            <div className="text-lg font-black dark:text-gray-200 mr-2">
-              BosonQ Psi PVT. LTD.
+            <time className="font-mono dark:text-white inline-flex items-center gap-3">
+              Full Stack Developer
+            </time>
+            <div className="text-lg font-black dark:text-gray-200 mr-2 flex items-center gap-2">
+              <img className=" h-5" src={bqp} alt="" /> BosonQ Psi PVT. LTD.
             </div>
             <p className=" text-md dark:text-gray-400 mr-2">
               With 2 years of experience at this company, I play a key role in

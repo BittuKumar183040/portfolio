@@ -1,15 +1,20 @@
+import { motion } from 'motion/react';
+
 const StackSection = ({ title, stack }: any) => {
   return (
     <div className=" mt-3">
       <h3 className={`text-sm font-semibold my-1 tracking-wider`}>{title}</h3>
       <div className=" flex gap-2 flex-wrap text-sm ml-2">
         {stack.split(',').map((item: string) => (
-          <p
+          <motion.p
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+            transition={{ type: 'spring', stiffness: 200 }}
             key={item}
             className="px-3 py-0.5 rounded-full h-fit w-fit dark:bg-gray-600 bg-gray-200 text-sm"
           >
             {item.trim()}
-          </p>
+          </motion.p>
         ))}
       </div>
     </div>

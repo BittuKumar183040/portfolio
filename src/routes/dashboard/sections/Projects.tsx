@@ -1,6 +1,7 @@
 import ProjectCard from '../../../components/ProjectCard';
 import { projects } from '../../../assets/data/projects';
 import SectionHeading from '../../../components/SectionHeading';
+import { motion } from 'motion/react';
 
 const ProjectsItems = ({ group }: any) => {
   const projectList = (key: string) => {
@@ -49,9 +50,10 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
     >
       {tabs.map((tab) => (
         <>
-          <input
+          <motion.input
+            key={tab.type}
             type="radio"
-            name="my_tabs_2"
+            name="tabs"
             role="tab"
             className="tab dark:text-gray-500"
             aria-label={tab.label}
