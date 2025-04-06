@@ -76,7 +76,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
       <div className="select-none h-40 dark:opacity-80 group-hover:opacity-100 transition-opacity">
         <motion.img
           variants={imageVariants}
-          className="h-full w-full object-cover object-top pointer-events-none shadow-inner transition-all"
+          className="h-full w-full rounded-2xl object-cover object-top pointer-events-none shadow-inner transition-all"
           src={imageSource[0]}
           alt=""
           loading="lazy"
