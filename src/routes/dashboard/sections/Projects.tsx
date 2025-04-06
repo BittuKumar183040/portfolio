@@ -34,12 +34,12 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
   };
 
   const tabs = [
-    {type:'all', label:"All"},
-    {type:'major', label:"Major"},
-    {type:'minor', label:"Minor"},
-    {type:'games', label:"Games"},
-    {type:'visualization', label:"Visualization"}
-  ]
+    { type: 'all', label: 'All' },
+    { type: 'major', label: 'Major' },
+    { type: 'minor', label: 'Minor' },
+    { type: 'games', label: 'Games' },
+    { type: 'visualization', label: 'Visualization' },
+  ];
 
   return (
     <div
@@ -47,22 +47,24 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
       className="tabs tabs-lifted dark:opacity-80"
       onChange={handleTabChange}
     >
-      {tabs.map((tab)=><>
-        <input
-          type="radio"
-          name="my_tabs_2"
-          role="tab"
-          className="tab dark:text-gray-500"
-          aria-label={tab.label}
-          defaultChecked={activeTab === tab.type}
-        />
-        <div
-          role="tabpanel"
-          className="tab-content bg-base-100 border-base-300 rounded-box md:p-6 p-2 pb-6 "
-        >
-          <ProjectsItems group={tab.type} />
-        </div>
-      </>)}
+      {tabs.map((tab) => (
+        <>
+          <input
+            type="radio"
+            name="my_tabs_2"
+            role="tab"
+            className="tab dark:text-gray-500"
+            aria-label={tab.label}
+            defaultChecked={activeTab === tab.type}
+          />
+          <div
+            role="tabpanel"
+            className="tab-content bg-base-100 border-base-300 rounded-box md:p-6 p-2 pb-6 "
+          >
+            <ProjectsItems group={tab.type} />
+          </div>
+        </>
+      ))}
     </div>
   );
 };

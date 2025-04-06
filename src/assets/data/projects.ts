@@ -240,7 +240,7 @@ export const projects = [
   {
     id: '4626bae8-3fb8-481c-a6dd-22d7e3e9cd53',
     title: 'Tic Tac Toe',
-    group:'games',
+    group: 'games',
     shortDesc:
       'An interactive tic tac toe game with smooth animation build using Vanilla Javascript, HTML and CSS',
     description: `<div class=" max-w-3xl mx-auto">

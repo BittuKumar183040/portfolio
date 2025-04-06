@@ -2,8 +2,9 @@ import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import { useSpring, animated, easings } from '@react-spring/web';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "motion/react"
+import { image } from 'motion/react-client';
+import { transform } from 'motion';
 
 interface ProjectProps {
   id: string;
@@ -32,53 +33,70 @@ const ProjectCard: React.FC<ProjectProps> = ({
     window.open(link, '_blank');
   };
 
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.4,
-  });
-
-  const [hoverStyle, api] = useSpring(() => ({
-    scale: 1,
-    config: { duration: 100 },
-  }));
-
-  const projectCardStyle = useSpring({
-    opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0px)' : 'translateY(50px)',
-    config: {
-      duration: 1000,
-      easing: easings.easeOutQuad,
+  const cardVariants = {
+    hover: {
+      scale: 1.05,
+      boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)",
+      transition: { type: "spring", stiffness: 300 },
     },
-  });
+  };
+
+  const titleVariants = {
+    hover: {
+      scale: 1.1,
+      transition: { type: "spring", stiffness: 300 },
+    },
+  };
+  const imageVariants = {
+    hover: {
+      borderRadius: "10px",
+      scale: 1.05,
+      boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.2)"
+    },
+  };
+  const descVariants = {
+    hover: {
+      scale: 1.05,
+      transition: { type: "spring", stiffness: 1000 },
+    },
+  };
+  const logoVarients = {
+    hover: {
+      scale: 1.1,
+      transition: { type: "spring", stiffness: 1000 }
+    },
+  };
 
   return (
-    <animated.div
-      ref={ref}
-      onMouseEnter={() => api.start({ scale: 1.05 })}
-      onMouseLeave={() => api.start({ scale: 1 })}
-      style={{ ...projectCardStyle, ...hoverStyle }}
+    <motion.div
+      variants={cardVariants}
+      initial="rest"
+      whileHover="hover"
       onClick={handleClick}
-      className="bg-gray-100 dark:bg-gray-900 group
-        cursor-pointer light:glass justify-around rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-800 shadow-inner 
-        w-52 md:w-80 
-        "
+      className="bg-gray-100 dark:bg-gray-900 group cursor-pointer light:glass justify-around rounded-2xl border-2 border-gray-200 dark:border-gray-800 shadow-inner w-52 md:w-80"
     >
-      <div className="select-none h-40 dark:opacity-80 group-hover:opacity-100 transition-opacity overflow-hidden">
-        <img
-          className=" h-full w-full object-cover object-top pointer-events-none shadow-inner transition-all "
+      <div className="select-none h-40 dark:opacity-80 group-hover:opacity-100 transition-opacity">
+        <motion.img
+          variants={imageVariants}
+          className="h-full w-full object-cover object-top pointer-events-none shadow-inner transition-all"
           src={imageSource[0]}
-          alt={''}
+          alt=""
           loading="lazy"
         />
       </div>
-      <div className="dark:text-white p-4 md:p-5 w-full ">
-        <h2 className="md:text-md md:text-left text-center font-bold text-sm md:mb-2 mb-0 ">
+      <div className="dark:text-white p-4 md:p-5 w-full">
+        <motion.h2
+          variants={titleVariants}
+          className="md:text-md md:text-left text-center font-bold text-sm md:mb-2 mb-0 inline-block"
+        >
           {title}
-        </h2>
-        <div className="dark:text-gray-300 h-20 text-sm overflow-clip hidden md:block ">
+        </motion.h2>
+        <motion.div
+          variants={descVariants}
+          className="dark:text-gray-300 h-20 text-sm overflow-clip hidden text-justify md:block ">
           {shortDesc}
-        </div>
-        <div className="flex-1 justify-end items-end mt-4 flex gap-5 ">
+        </motion.div>
+        <motion.div variants={logoVarients} className="flex-1 justify-end items-end mt-4 flex gap-5 ">
           {gitLink && (
             <div className=" tooltip tooltip-top" data-tip="Github">
               <FaGithub
@@ -97,9 +115,9 @@ const ProjectCard: React.FC<ProjectProps> = ({
               />
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
-    </animated.div>
+    </motion.div>
   );
 };
 
