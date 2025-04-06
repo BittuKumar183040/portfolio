@@ -1,6 +1,6 @@
 const StackSection = ({ title, stack }: any) => {
   return (
-    <div>
+    <div className=" mt-3">
       <h3 className={`text-sm font-semibold my-1 tracking-wider`}>{title}</h3>
       <div className=" flex gap-2 flex-wrap text-sm ml-2">
         {stack.split(',').map((item: string) => (
@@ -19,7 +19,7 @@ const StackSection = ({ title, stack }: any) => {
 const TechnologyStack = () => {
   const tecknologies: Record<string, string> = {
     Frontend:
-      'Redux, Three.js, CSS, SCSS, Responsive Design, Styled-components, Tailwind, API Handling',
+      'React js, Redux ,Three.js, React Three Fiber, CSS, SCSS, Responsive Design, Styled-components, Tailwind, API Handling',
     Backend:
       'Python, Django, FastAPI, JSON, SQLAlchemy, Data Processing, Celery, Socket.IO',
     Databases: 'MySQL, Postgres, MongoDB',

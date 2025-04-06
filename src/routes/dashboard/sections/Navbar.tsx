@@ -11,8 +11,8 @@ const Navbar = () => {
 
   return (
     <div
-      className="flex bg-white backdrop-blur-sm shadow-md border-b border-gray-300 z-40 fixed top-0 w-full p-3 px-4
-        dark:bg-black dark:text-white"
+      className="flex md:w-10/12 w-full bg-white bg-opacity-15 backdrop-blur-sm rounded-3xl shadow-md border-b border-gray-300 z-40 fixed left-1/2 -translate-x-1/2 top-1 p-3 px-4
+        dark:bg-slate-950 dark:bg-opacity-25 dark:text-white"
     >
       <div className="flex-1 flex items-center">
         <p className="text-md">Bittu Kumar.</p>

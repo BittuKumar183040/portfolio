@@ -7,3 +7,31 @@
   font-family: 'Nunito', sans-serif;
   user-select: none;
 }
+
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  /* for horizontal scroll */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  /* or use a subtle gray */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(140, 140, 140, 0.3);
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(140, 140, 140, 0.5);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 140, 140, 0.3) transparent;
+}
