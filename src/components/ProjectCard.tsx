@@ -32,6 +32,13 @@ const ProjectCard: React.FC<ProjectProps> = ({
   };
 
   const cardVariants = {
+    rest: { opacity: 0, y: 50, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: 'easeOut' },
+    },
     hover: {
       scale: 1.05,
       boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.2)',
@@ -68,6 +75,8 @@ const ProjectCard: React.FC<ProjectProps> = ({
   return (
     <motion.div
       variants={cardVariants}
+      whileInView={'visible'}
+      viewport={{ once: false, amount: 0.2 }}
       initial="rest"
       whileHover="hover"
       onClick={handleClick}

@@ -1,7 +1,7 @@
 import ProjectCard from '../../../components/ProjectCard';
 import { projects } from '../../../assets/data/projects';
 import SectionHeading from '../../../components/SectionHeading';
-import { motion } from 'motion/react';
+import { motion } from "motion/react"
 
 const ProjectsItems = ({ group }: any) => {
   const projectList = (key: string) => {
@@ -28,7 +28,7 @@ const ProjectsItems = ({ group }: any) => {
   );
 };
 
-const GroupProjects = ({ activeTab }: { activeTab: string }) => {
+const GroupProjects: React.FC<{ activeTab: string }> = ({ activeTab }) => {
   const handleTabChange = (e: any) => {
     const currentTab = e.target.ariaLabel.toLowerCase();
     localStorage.setItem('currentTab', currentTab);
@@ -49,8 +49,11 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
       onChange={handleTabChange}
     >
       {tabs.map((tab) => (
-        <div key={tab.type}>
+        <>
           <motion.input
+            key={tab.type}
+            animate={{ opacity: 0.9 }}
+            transition={{ duration: 0.5 }}
             type="radio"
             name="tabs"
             role="tab"
@@ -64,7 +67,7 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
           >
             <ProjectsItems group={tab.type} />
           </div>
-        </div>
+        </>
       ))}
     </div>
   );

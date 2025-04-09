@@ -34,7 +34,7 @@ const Timeline = () => {
             <div className="text-lg font-black dark:text-gray-200 mr-2 flex items-center gap-2">
               <motion.img
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
                 loading="lazy"
                 className=" h-5"
                 src={bqp} alt="" />
