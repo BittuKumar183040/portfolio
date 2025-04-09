@@ -18,7 +18,7 @@ const Project = () => {
   return (
     <div className=" container relative mx-auto pt-32 gap-8 px-2 md:px-0 ">
       <div
-        className=" fixed top-14 left-1/2 -translate-x-1/2 shadow-lg dark:shadow-gray-700 dark:bg-opacity-50 rounded-b-2xl bg-white dark:bg-black bg-opacity-40 backdrop-blur-sm 
+        className=" fixed top-[53px] left-1/2 -translate-x-1/2 shadow-lg dark:shadow-gray-700 dark:bg-opacity-50 rounded-b-2xl bg-white dark:bg-black bg-opacity-40 backdrop-blur-sm 
         px-8 py-3"
       >
         <div className="card-actions flex-1 justify-end items-end flex gap-5 dark:text-gray-300">
