@@ -1,6 +1,7 @@
 import SectionHeading from '../../../components/SectionHeading';
 import TechnologyStack from '../../../components/TechnologyStack';
 import bqp from '../../../assets/bqp.png';
+import { motion } from 'motion/react';
 
 const Timeline = () => {
   return (
@@ -31,7 +32,13 @@ const Timeline = () => {
               Full Stack Developer
             </time>
             <div className="text-lg font-black dark:text-gray-200 mr-2 flex items-center gap-2">
-              <img className=" h-5" src={bqp} alt="" /> BosonQ Psi PVT. LTD.
+              <motion.img
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                loading="lazy"
+                className=" h-5"
+                src={bqp} alt="" />
+              BosonQ Psi PVT. LTD.
             </div>
             <p className=" text-md dark:text-gray-400 mr-2">
               With 2 years of experience at this company, I play a key role in

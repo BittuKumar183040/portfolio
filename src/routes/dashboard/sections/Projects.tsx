@@ -49,9 +49,8 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
       onChange={handleTabChange}
     >
       {tabs.map((tab) => (
-        <>
+        <div key={tab.type}>
           <motion.input
-            key={tab.type}
             type="radio"
             name="tabs"
             role="tab"
@@ -65,7 +64,7 @@ const GroupProjects = ({ activeTab }: { activeTab: string }) => {
           >
             <ProjectsItems group={tab.type} />
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
