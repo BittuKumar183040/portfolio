@@ -1,7 +1,7 @@
 import ProjectCard from '../../../components/ProjectCard';
 import { projects } from '../../../assets/data/projects';
 import SectionHeading from '../../../components/SectionHeading';
-import { motion } from "motion/react"
+import { motion } from 'motion/react';
 
 const ProjectsItems = ({ group }: any) => {
   const projectList = (key: string) => {
@@ -12,7 +12,10 @@ const ProjectsItems = ({ group }: any) => {
   };
 
   return (
-    <div className=" flex gap-4 flex-wrap justify-around">
+    <div className=" relative flex gap-4 flex-wrap justify-around">
+      <p className=" absolute right-0 -top-6 px-2 py-0.5 rounded-b-lg text-xs bg-gray-200 w-fit">
+        No. of Projects - {projectList(group).length}
+      </p>
       {projectList(group).map((project) => (
         <ProjectCard
           key={project.id}

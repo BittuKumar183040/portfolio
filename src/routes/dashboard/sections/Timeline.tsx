@@ -37,7 +37,9 @@ const Timeline = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
                 loading="lazy"
                 className=" h-5"
-                src={bqp} alt="" />
+                src={bqp}
+                alt=""
+              />
               BosonQ Psi PVT. LTD.
             </div>
             <p className=" text-md dark:text-gray-400 mr-2">
