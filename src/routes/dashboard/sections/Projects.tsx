@@ -13,7 +13,7 @@ const ProjectsItems = ({ group }: any) => {
 
   return (
     <div className=" relative flex gap-4 flex-wrap justify-around">
-      <p className=" absolute right-0 -top-6 px-2 py-0.5 rounded-b-lg text-xs bg-gray-200 w-fit">
+      <p className=" md:block hidden absolute right-0 -top-6 px-2 py-0.5 rounded-b-lg text-xs bg-gray-200 w-fit">
         No. of Projects - {projectList(group).length}
       </p>
       {projectList(group).map((project) => (
