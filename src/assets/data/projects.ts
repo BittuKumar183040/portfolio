@@ -46,6 +46,10 @@ import clock2_dark from '../clock/clock2_dark.png';
 import clock3 from '../clock/clock3.png';
 import clock3_dark from '../clock/clock3_dark.png';
 
+import sudoku1 from '../sudoku/sudoku1.jpg';
+import sudoku2 from '../sudoku/sudoku2.jpg';
+import sudoku3 from '../sudoku/sudoku3.jpg';
+
 export const projects = [
   {
     id: 'f3083360-bbb2-4a48-be19-2323456347e975',
@@ -375,6 +379,66 @@ export const projects = [
     imageSource: [cur1, cur2],
     gitLink: 'https://github.com/BittuKumar183040/currency',
     previewLink: 'https://bittukumar183040.github.io/currency/',
+  },
+  {
+    id: '8d66ed22-5089-41a8-abe7-6c63f0c4747e',
+    title: 'Sudoku Solver',
+    group: 'games',
+    shortDesc: 'Sudoku Solver is a powerful interactive tool for solving and visualizing Sudoku puzzles.',
+    description: `<div class="max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-red-600 dark:text-white mb-6">
+        Project: Sudoku Solver
+      </h3>
+      <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify">
+        Sudoku Solver is a powerful interactive tool for solving and visualizing Sudoku puzzles. It features a set of predefined puzzles, a builder for custom challenges, and real-time visualization of the solving process with speed controls. Designed for accessibility and engagement, it offers a sleek, responsive UI optimized for both desktop and mobile platforms.
+      </p>
+  
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Features</h2>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+          <li><span class="font-medium">Predefined Templates:</span> Explore a variety of classic Sudoku puzzles to understand solving strategies.</li>
+          <li><span class="font-medium">Custom Builder:</span> Design and input your own Sudoku problems to challenge the solver.</li>
+          <li><span class="font-medium">Visualization:</span> Watch the algorithm solve puzzles step-by-step with optional speed controls.</li>
+          <li><span class="font-medium">Responsive Design:</span> Tailored layout that adapts seamlessly to all screen sizes and devices.</li>
+        </ul>
+      </section>
+  
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Technologies Used</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+            <span>React</span>
+          </div>
+          <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+            <span>Tailwind CSS</span>
+          </div>
+          <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+            <span>Lil-GUI Library</span>
+          </div>
+          <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+            <span>Lucide Icons</span>
+          </div>
+        </div>
+      </section>
+  
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Usage</h2>
+        <p class="text-gray-700 mb-4 dark:text-gray-400">Follow these steps to use the Sudoku Solver app:</p>
+        <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-400">
+          <li>Launch the app and choose a predefined template or create your own Sudoku puzzle.</li>
+          <li>Adjust the solving speed using the built-in control panel.</li>
+          <li>Start the visualization to see the puzzle being solved step-by-step.</li>
+          <li>Interact with the builder to test different configurations and challenges.</li>
+        </ol>
+      </section>
+    </div>`,
+    imageSource: [
+      sudoku1,
+      sudoku2,
+      sudoku3
+    ],
+    gitLink: 'https://github.com/BittuKumar183040/sudoku-solver',
+    previewLink: 'https://sudoku-solver-nu-ten.vercel.app/',
   },
   {
     id: '83e34225-b646-6785-8a55-a5e54656955a',
@@ -959,4 +1023,5 @@ export const projects = [
     gitLink: 'https://github.com/BittuKumar183040/clock',
     previewLink: 'https://clock-live-prod.vercel.app/',
   },
+  
 ];
