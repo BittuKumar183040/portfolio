@@ -9,7 +9,25 @@ import Resume from './routes/resume/Resume';
 
 const App: React.FC = () => {
   const location = useLocation();
-  console.log('Version - b2.4.1');
+
+  console.log(`                                         
+BBBBBBBBBBBBBBBBB      222222222222222    Version-b2.132.0 
+B::::::::::::::::B    2:::::::::::::::22  
+B::::::BBBBBB:::::B   2::::::222222:::::2 
+BB:::::B     B:::::B  2222222     2:::::2 
+  B::::B     B:::::B              2:::::2 
+  B::::B     B:::::B              2:::::2 
+  B::::BBBBBB:::::B            2222::::2  
+  B:::::::::::::BB        22222::::::22   
+  B::::BBBBBB:::::B     22::::::::222     
+  B::::B     B:::::B   2:::::22222        
+  B::::B     B:::::B  2:::::2             
+  B::::B     B:::::B  2:::::2             
+BB:::::BBBBBB::::::B  2:::::2       222222
+B:::::::::::::::::B   2::::::2222222:::::2
+B::::::::::::::::B    2::::::::::::::::::2
+BBBBBBBBBBBBBBBBB     22222222222222222222                                        
+`);
 
   return (
     <>

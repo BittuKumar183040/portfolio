@@ -383,8 +383,9 @@ export const projects = [
   {
     id: '8d66ed22-5089-41a8-abe7-6c63f0c4747e',
     title: 'Sudoku Solver',
-    group: 'games',
-    shortDesc: 'Sudoku Solver is a powerful interactive tool for solving and visualizing Sudoku puzzles.',
+    group: 'games,visualization',
+    shortDesc:
+      'Sudoku Solver is a powerful interactive tool for solving and visualizing Sudoku puzzles.',
     description: `<div class="max-w-3xl mx-auto">
       <h3 class="text-3xl text-left font-bold text-red-600 dark:text-white mb-6">
         Project: Sudoku Solver
@@ -432,11 +433,7 @@ export const projects = [
         </ol>
       </section>
     </div>`,
-    imageSource: [
-      sudoku1,
-      sudoku2,
-      sudoku3
-    ],
+    imageSource: [sudoku1, sudoku2, sudoku3],
     gitLink: 'https://github.com/BittuKumar183040/sudoku-solver',
     previewLink: 'https://sudoku-solver-nu-ten.vercel.app/',
   },
@@ -888,7 +885,7 @@ export const projects = [
   {
     id: '33dec02c-4b54-4ad8-9b3e-dea304fb6396',
     title: 'Weather Map Application',
-    group: 'major',
+    group: 'major,visualization',
     shortDesc:
       'A dynamic weather map application that allows users to click on any location in the world and get real-time weather details for that point.',
     description: `<div class=" max-w-3xl mx-auto">
@@ -1023,5 +1020,4 @@ export const projects = [
     gitLink: 'https://github.com/BittuKumar183040/clock',
     previewLink: 'https://clock-live-prod.vercel.app/',
   },
-  
 ];

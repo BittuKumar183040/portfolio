@@ -2,13 +2,14 @@ import ProjectCard from '../../../components/ProjectCard';
 import { projects } from '../../../assets/data/projects';
 import SectionHeading from '../../../components/SectionHeading';
 import { motion } from 'motion/react';
+import React from 'react';
 
 const ProjectsItems = ({ group }: any) => {
   const projectList = (key: string) => {
     if (key === 'all') {
       return projects;
     }
-    return projects.filter((project) => project.group === key);
+    return projects.filter((project) => project.group.split(',').includes(key));
   };
 
   return (
@@ -52,9 +53,8 @@ const GroupProjects: React.FC<{ activeTab: string }> = ({ activeTab }) => {
       onChange={handleTabChange}
     >
       {tabs.map((tab) => (
-        <>
+        <React.Fragment key={tab.type}>
           <motion.input
-            key={tab.type}
             animate={{ opacity: 0.9 }}
             transition={{ duration: 0.5 }}
             type="radio"
@@ -70,7 +70,7 @@ const GroupProjects: React.FC<{ activeTab: string }> = ({ activeTab }) => {
           >
             <ProjectsItems group={tab.type} />
           </div>
-        </>
+        </React.Fragment>
       ))}
     </div>
   );
