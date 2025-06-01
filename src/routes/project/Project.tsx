@@ -7,7 +7,7 @@ import useDocumentTitle from '../documentTitle/ChangeTitle';
 import BackBtn from '../../components/BackBtn';
 
 const Project = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const project = projects.find((project) => project.id === id);
 
   useDocumentTitle(project?.title);
