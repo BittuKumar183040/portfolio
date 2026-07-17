@@ -50,7 +50,232 @@ import sudoku1 from '../sudoku/sudoku1.jpg';
 import sudoku2 from '../sudoku/sudoku2.jpg';
 import sudoku3 from '../sudoku/sudoku3.jpg';
 
+import foldshield from '../rexcrux/foldshield.png';
+import foldsheild2 from '../rexcrux/foldsheild2.png';
+
+import windoes1 from '../windoes/1.png';
+import windoes2 from '../windoes/2.png';
+import windoes3 from '../windoes/3.png';
+import windoes4 from '../windoes/4.png';
+import windoes5 from '../windoes/5.png';
+
 export const projects = [
+  {
+    id: 'g3583361-bbb2-4a48-be19-243256347e975',
+    title: 'FoldShield++',
+    group: 'visualization',
+    shortDesc:
+      'A symbolic-topological structural intelligence engine that detects mutation impact, fold switching, and conformational shifts in proteins — surfacing changes that geometry-based metrics like TM-score and RMSD systematically miss.',
+    description: `<div class="max-w-3xl mx-auto">
+      <h3 class="text-3xl text-left font-bold text-gray-600 dark:text-white mb-6">
+        Project: FoldShield++ — Structural Intelligence Engine
+      </h3>
+      <p class="text-base mb-4 text-gray-600 dark:text-gray-300 text-justify">
+        FoldShield++ is a symbolic and topological analysis layer that runs on top of protein structure predictions from tools like AlphaFold and ESMFold. Rather than replacing coordinate-based comparison, it addresses a specific blind spot in conventional metrics: TM-score, RMSD, and LDDT measure coordinate overlap, not structural grammar — so a single mutation can abolish a protein's function while TM-score stays above 0.97. FoldShield++ decomposes structural comparison into four interpretable signals (braid topology, motif entropy, local topology windows, and persistent homology), letting researchers ask not just whether two structures differ, but which region diverged and why.
+      </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Core Capabilities</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium">Mutation Impact Detection:</span> Identifies damaging variants via symbolic divergence and topological shifts, validated on clinically relevant genes including BRCA1/2, KRAS, and TP53 — cases where geometry-only tools often fail to explain pathogenicity.</li>
+        <li><span class="font-medium">Fold Classification &amp; Structural Separation:</span> Classifies proteins using topological invariants and symbolic motifs, achieving 0.841 AUC on the CATH-S20 nonredundant benchmark for large-scale fold discrimination.</li>
+        <li><span class="font-medium">Conformational State Detection:</span> Distinguishes active/inactive, open/closed, and bound/unbound structural states without molecular dynamics simulation — validated on adenylate kinase and GLP-1R activation states.</li>
+        <li><span class="font-medium">Interpretable Signal Breakdown:</span> Every score decomposes into four readable components, designed to complement rather than replace existing scalar stability predictors.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Benchmark Highlights</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400 border-collapse">
+          <thead>
+            <tr class="border-b dark:border-gray-700">
+              <th class="py-2 pr-4 font-semibold">Case</th>
+              <th class="py-2 pr-4 font-semibold">Geometry-Based Metrics</th>
+              <th class="py-2 font-semibold">FoldShield++ Signal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b dark:border-gray-800">
+              <td class="py-2 pr-4">KRAS WT vs G12C</td>
+              <td class="py-2 pr-4">TM-score 0.97, RMSD &lt; 1 Å — no signal</td>
+              <td class="py-2">Switch-I dynamics altered — known drug target mechanism</td>
+            </tr>
+            <tr>
+              <td class="py-2 pr-4">BRCA1 WT vs C61G</td>
+              <td class="py-2 pr-4">TM-score 0.93 — "highly similar"</td>
+              <td class="py-2">Zinc coordination destroyed — E3 ligase activity abolished</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Who It's Built For</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium">Researchers:</span> Interpretable per-signal scores and reproducible benchmarks designed to hold up under peer review.</li>
+        <li><span class="font-medium">Biotech &amp; Pharma:</span> Mutation impact scoring on clinically relevant genes for faster variant triage, without running molecular dynamics.</li>
+        <li><span class="font-medium">Platform Builders:</span> Discrete, compressible symbolic/topological encodings suited for search and clustering at scale on top of AlphaFold/ESMFold outputs.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">Technologies Used</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Next.js</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Three.js</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>GSAP</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Tailwind CSS</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Python</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>PDB</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-gray-200 px-3 py-2 rounded dark:bg-gray-100">
+          <span>Topological Data Analysis</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pt-8 border-t text-center dark:border-gray-700">
+      <p class="text-gray-700 font-medium dark:text-gray-300">Bittu Kumar</p>
+      <a href="https://github.com/BittuKumar183040" class="text-blue-600 hover:underline dark:text-blue-400">GitHub Profile</a>
+    </footer>
+  </div>`,
+    imageSource: [foldshield, foldsheild2],
+    previewLink: 'https://pdb.betoo.co.in/',
+  },
+  {
+    id: '98263guhf-bbb2-4a48-seef3-ageageag345253r',
+    title: 'Windows 11 Clone',
+    group: 'major',
+    shortDesc:
+      'A feature-rich Windows 11 desktop environment built with React and TypeScript, featuring a custom window manager, virtual file system, desktop interactions, taskbar, and application lifecycle management.',
+
+    description: `
+  <div class="max-w-3xl mx-auto">
+
+    <h3 class="text-3xl font-bold text-gray-600 dark:text-white mb-6">
+      Project: Windows 11 Clone
+    </h3>
+
+    <p class="text-base mb-6 text-gray-600 dark:text-gray-300 text-justify">
+      Windows 11 Clone is a browser-based desktop operating system recreation built from scratch using React, TypeScript and Redux Toolkit. Rather than simply replicating the UI, the project focuses on implementing desktop behaviors including window management, application lifecycle, taskbar interactions, file associations and a modular application architecture similar to a real operating system.
+    </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">
+        Core Features
+      </h2>
+
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li><span class="font-medium">Desktop Environment:</span> Interactive Windows 11 inspired desktop with wallpaper, desktop icons and contextual right-click menus.</li>
+
+        <li><span class="font-medium">Custom Window Manager:</span> Supports launching, closing, minimizing, maximizing and restoring applications while maintaining active window state.</li>
+
+        <li><span class="font-medium">Taskbar System:</span> Dynamic pinned applications, running application indicators and intelligent application launching similar to Windows 11.</li>
+
+        <li><span class="font-medium">Application Lifecycle:</span> Redux-powered state management for application instances, window focus, z-index ordering and temporary application handling.</li>
+
+        <li><span class="font-medium">File Associations:</span> Automatically opens supported file types in their corresponding applications (e.g. TXT → Notepad, PNG → Paint).</li>
+
+        <li><span class="font-medium">Virtual Desktop Experience:</span> Modular architecture allowing applications to behave independently while sharing a common desktop environment.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">
+        Applications Implemented
+      </h2>
+
+      <div class="grid grid-cols-2 gap-3">
+
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-4 py-3">
+          <span class="font-medium">📁 File Manager</span>
+          <p class="text-sm mt-1">Browse and manage the virtual file system.</p>
+        </div>
+
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-4 py-3">
+          <span class="font-medium">📝 Notepad</span>
+          <p class="text-sm mt-1">Lightweight text editor with dynamic file loading.</p>
+        </div>
+
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-4 py-3">
+          <span class="font-medium">🎨 Paint</span>
+          <p class="text-sm mt-1">Canvas-based drawing application.</p>
+        </div>
+
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-4 py-3">
+          <span class="font-medium">🖥 Desktop Shell</span>
+          <p class="text-sm mt-1">Window manager, desktop events and taskbar integration.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">
+        Technical Highlights
+      </h2>
+
+      <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-400">
+        <li>Custom application registry with dynamic application launching.</li>
+        <li>Redux Toolkit based global window management.</li>
+        <li>Window activation and focus handling.</li>
+        <li>Dynamic taskbar with pinned and temporary applications.</li>
+        <li>Reusable application framework for adding future apps.</li>
+        <li>Responsive desktop interface with modern Windows 11 styling.</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-600 dark:text-gray-300 mb-4">
+        Technologies Used
+      </h2>
+
+      <div class="grid grid-cols-2 gap-4">
+
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">React</div>
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">TypeScript</div>
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">Redux Toolkit</div>
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">Tailwind CSS</div>
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">Framer Motion</div>
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">React DnD</div>
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">HTML5 Canvas</div>
+        <div class="bg-gray-200 dark:bg-gray-100 rounded px-3 py-2">Vite</div>
+
+      </div>
+    </section>
+
+    <footer class="pt-8 border-t text-center dark:border-gray-700">
+      <p class="text-gray-700 font-medium dark:text-gray-300">
+        Bittu Kumar
+      </p>
+
+      <a
+        href="https://github.com/BittuKumar183040"
+        class="text-blue-600 hover:underline dark:text-blue-400"
+      >
+        GitHub Profile
+      </a>
+    </footer>
+
+  </div>
+  `,
+
+    imageSource: [windoes1, windoes2, windoes3, windoes4, windoes5],
+    previewLink: 'https://betoo.co.in/',
+  },
   {
     id: 'f3083360-bbb2-4a48-be19-2323456347e975',
     title: '3D Model Renderer',
@@ -131,7 +356,7 @@ export const projects = [
   </div>`,
     imageSource: [renderer1, renderer2, renderer3],
     gitLink: 'https://github.com/BittuKumar183040/3DRenderer',
-    previewLink: 'https://3d-rr.vercel.app/',
+    previewLink: 'https://3drr.betoo.co.in/',
   },
   {
     id: '48825cc4-583a-428f-bfd0-f3f062d1692a',

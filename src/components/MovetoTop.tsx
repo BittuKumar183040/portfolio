@@ -14,7 +14,7 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
   percentage,
   strokeWidth = 5,
   color,
-  backgroundColor
+  backgroundColor,
 }) => {
   const normalizedRadius = radius - strokeWidth / 2;
   const circumference = 2 * Math.PI * normalizedRadius;
@@ -23,7 +23,7 @@ const CircleProgress: React.FC<CircleProgressProps> = ({
   return (
     <svg
       width={radius * 2}
-      height={radius *2 }
+      height={radius * 2}
       style={{ transform: 'rotate(-90deg)' }} // Rotate to start from top (12 o'clock)
     >
       {/* Background Circle */}
@@ -58,7 +58,8 @@ const MovetoTop = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const scrolled = (scrollTop / docHeight) * 100;
       setPercentage(Math.min(100, Math.max(0, scrolled)));
       setShowOnTop(scrollTop > 600);
@@ -80,8 +81,14 @@ const MovetoTop = () => {
     >
       <div className="relative h-16 w-16">
         {/* Circle Progress behind */}
-        <CircleProgress radius={32} percentage={percentage} strokeWidth={2} color="#dc2626" backgroundColor="#e5e7eb" />
-        
+        <CircleProgress
+          radius={32}
+          percentage={percentage}
+          strokeWidth={2}
+          color="#dc2626"
+          backgroundColor="#e5e7eb"
+        />
+
         {/* Top image */}
         <img
           src={onTop}

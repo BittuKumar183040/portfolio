@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 
 interface ProjectProps {
   id: string;
@@ -22,6 +22,13 @@ const ProjectCard: React.FC<ProjectProps> = ({
   previewLink,
 }) => {
   const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const images: string[] = Array.isArray(imageSource) ? imageSource : [imageSource];
+  const hasMultipleImages = images.length > 1;
+
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     navigate(`/project/${id}`);
@@ -31,8 +38,33 @@ const ProjectCard: React.FC<ProjectProps> = ({
     window.open(link, '_blank');
   };
 
+  const startCycling = () => {
+    setIsHovering(true);
+    if (!hasMultipleImages) return;
+
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    }, 1200);
+  };
+
+  const stopCycling = () => {
+    setIsHovering(false);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setActiveIndex(0);
+  };
+
+  // cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
+
   const cardVariants = {
-    rest: { opacity: 0, y: 50, scale: 0.8 },
+    rest: { opacity: 0, y: 40, scale: 0.96 },
     visible: {
       opacity: 1,
       y: 0,
@@ -40,91 +72,122 @@ const ProjectCard: React.FC<ProjectProps> = ({
       transition: { duration: 0.5, ease: 'easeOut' },
     },
     hover: {
-      scale: 1.05,
-      boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.2)',
-      transition: { type: 'spring', stiffness: 300 },
+      y: -6,
+      transition: { type: 'spring', stiffness: 260, damping: 20 },
     },
   };
 
   const titleVariants = {
     hover: {
-      scale: 1.1,
-      transition: { type: 'spring', stiffness: 300 },
+      x: 2,
+      transition: { type: 'spring', stiffness: 300, damping: 20 },
     },
   };
-  const imageVariants = {
+
+  const iconContainerVariants = {
+    rest: { opacity: 0, y: 6 },
     hover: {
-      borderRadius: '10px',
-      scale: 1.05,
-      boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.2)',
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.06, delayChildren: 0.05 },
     },
   };
-  const descVariants = {
+
+  const iconVariants = {
+    rest: { opacity: 0, y: 6 },
     hover: {
-      scale: 1.05,
-      transition: { type: 'spring', stiffness: 1000 },
-    },
-  };
-  const logoVarients = {
-    hover: {
-      scale: 1.1,
-      transition: { type: 'spring', stiffness: 1000 },
+      opacity: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 300, damping: 20 },
     },
   };
 
   return (
     <motion.div
       variants={cardVariants}
-      whileInView={'visible'}
+      whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}
       initial="rest"
       whileHover="hover"
+      onHoverStart={startCycling}
+      onHoverEnd={stopCycling}
       onClick={handleClick}
-      className="bg-gray-100 dark:bg-gray-900 group cursor-pointer light:glass justify-around rounded-2xl border-2 border-gray-200 dark:border-gray-800 shadow-inner w-52 md:w-80"
+      className="group relative w-52 cursor-pointer overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 md:w-80"
     >
-      <div className="select-none h-40 dark:opacity-80 group-hover:opacity-100 transition-opacity">
-        <motion.img
-          variants={imageVariants}
-          className="h-full w-full rounded-2xl object-cover object-top pointer-events-none shadow-inner transition-all"
-          src={imageSource[0]}
-          alt=""
-          loading="lazy"
-        />
+      <div className="relative h-40 overflow-hidden">
+        <AnimatePresence initial={false} mode="popLayout">
+          <motion.img
+            key={activeIndex}
+            initial={{ x: '100%', opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: '-100%', opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 h-full w-full scale-105 object-cover object-top pointer-events-none select-none"
+            src={images[activeIndex]}
+            alt=""
+            loading="lazy"
+          />
+        </AnimatePresence>
+
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-black/30" />
+
+        {hasMultipleImages && (
+          <div className="pointer-events-none absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">
+            {images.map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === activeIndex && isHovering
+                    ? 'w-4 bg-white'
+                    : 'w-1.5 bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
-      <div className="dark:text-white p-4 md:p-5 w-full">
+
+      <div className="w-full p-4 dark:text-white md:p-5">
         <motion.h2
           variants={titleVariants}
-          className="md:text-md md:text-left text-center font-bold text-sm md:mb-2 mb-0 inline-block"
+          className="mb-0 inline-block text-center text-sm font-bold text-gray-900 dark:text-white md:mb-2 md:text-left md:text-md"
         >
           {title}
         </motion.h2>
-        <motion.div
-          variants={descVariants}
-          className="dark:text-gray-300 h-20 text-sm overflow-clip hidden text-justify md:block "
-        >
+
+        <div className="hidden h-20 overflow-clip text-justify text-sm text-gray-600 dark:text-gray-300 md:block">
           {shortDesc}
-        </motion.div>
+        </div>
+
         <motion.div
-          variants={logoVarients}
-          className="flex-1 justify-end items-end mt-4 flex gap-5 "
+          variants={iconContainerVariants}
+          className="mt-4 flex flex-1 items-end justify-end gap-5"
         >
           {gitLink && (
-            <div className=" tooltip tooltip-top" data-tip="Github">
+            <motion.div
+              variants={iconVariants}
+              className="tooltip tooltip-top"
+              data-tip="Github"
+            >
               <FaGithub
-                className=" cursor-pointer"
+                className="cursor-pointer text-gray-700 transition-colors duration-200 hover:text-primary dark:text-gray-300"
                 onClick={(e) => handleLinkClick(e, gitLink)}
-                size={25}
+                size={22}
               />
-            </div>
+            </motion.div>
           )}
           {previewLink && (
-            <div className=" tooltip tooltip-left" data-tip="Project Preview">
+            <motion.div
+              variants={iconVariants}
+              className="tooltip tooltip-left"
+              data-tip="Project Preview"
+            >
               <FaRegEye
-                className=" cursor-pointer"
+                className="cursor-pointer text-gray-700 transition-colors duration-200 hover:text-primary dark:text-gray-300"
                 onClick={(e) => handleLinkClick(e, previewLink)}
-                size={25}
+                size={22}
               />
-            </div>
+            </motion.div>
           )}
         </motion.div>
       </div>
