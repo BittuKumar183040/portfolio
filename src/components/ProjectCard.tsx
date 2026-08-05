@@ -26,7 +26,9 @@ const ProjectCard: React.FC<ProjectProps> = ({
   const [isHovering, setIsHovering] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const images: string[] = Array.isArray(imageSource) ? imageSource : [imageSource];
+  const images: string[] = Array.isArray(imageSource)
+    ? imageSource
+    : [imageSource];
   const hasMultipleImages = images.length > 1;
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -112,9 +114,9 @@ const ProjectCard: React.FC<ProjectProps> = ({
       onHoverStart={startCycling}
       onHoverEnd={stopCycling}
       onClick={handleClick}
-      className="group relative w-52 cursor-pointer overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 md:w-80"
+      className="group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
     >
-      <div className="relative h-40 overflow-hidden">
+      <div className="relative h-40 shrink-0 overflow-hidden">
         <AnimatePresence initial={false} mode="popLayout">
           <motion.img
             key={activeIndex}
@@ -147,7 +149,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
         )}
       </div>
 
-      <div className="w-full p-4 dark:text-white md:p-5">
+      <div className="flex w-full flex-1 flex-col p-4 dark:text-white md:p-5">
         <motion.h2
           variants={titleVariants}
           className="mb-0 inline-block text-center text-sm font-bold text-gray-900 dark:text-white md:mb-2 md:text-left md:text-md"

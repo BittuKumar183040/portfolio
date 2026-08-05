@@ -1,6 +1,6 @@
-'use client';
-import React, { useRef } from 'react';
-import { useScroll, useTransform, motion, MotionValue } from 'motion/react';
+"use client";
+import React, { useRef } from "react";
+import { useScroll, useTransform, motion, MotionValue } from "motion/react";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -12,47 +12,20 @@ export const ContainerScroll = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ["start center", "end center"],
   });
-  const [isMobile, setIsMobile] = React.useState(false);
 
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
-
-  const scaleDimensions = () => {
-    return isMobile ? [0.95, 0.9] : [0.92, 0.6];
-  };
-  const translatePlatfrom = () => {
-    return isMobile ? [0, 100] : [0, -100];
-  };
-  const rotatePlatform = () => {
-    return isMobile ? [0, 0, 0] : [10, 0, 0];
-  };
-
-  const rotate = useTransform(scrollYProgress, [0, 0.25, 1], rotatePlatform());
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    translatePlatfrom(),
-  );
+  const width = useTransform(scrollYProgress, [0, 0.5], ["70vw", "100vw"]);
+  const radius = useTransform(scrollYProgress, [0, 0.5], [28, 0]);
+  const translate = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
 
   return (
-    <div
-      className=" flex items-start justify-center relative"
-      ref={containerRef}
-    >
-      <div className="w-full sticky" style={{ perspective: '1000px' }}>
+    // extra height = the runway the sticky child scrolls through before it releases
+    <div ref={containerRef} className="relative" style={{ height: "100vh" }}>
+      {/* NOTE: no overflow-hidden and no perspective here — that's what was locking scroll */}
+      <div className="sticky top-0 flex h-screen flex-col items-center justify-center">
         <Header translate={translate} titleComponent={titleComponent} />
-        <Card rotate={rotate} translate={translate} scale={scale}>
+        <Card width={width} radius={radius}>
           {children}
         </Card>
       </div>
@@ -64,38 +37,40 @@ export const Header = ({
   translate,
   titleComponent,
 }: {
-  translate: MotionValue;
+  translate: MotionValue<number>;
   titleComponent: string | React.ReactNode;
-}) => {
-  return (
-    <motion.div
-      style={{
-        translateY: translate,
-      }}
-      className="div max-w-5xl mx-auto text-center"
-    >
-      {titleComponent}
-    </motion.div>
-  );
-};
+}) => (
+  <motion.div
+    style={{ translateY: translate }}
+    className="mx-auto mb-8 max-w-5xl text-center"
+  >
+    {titleComponent}
+  </motion.div>
+);
 
 export const Card = ({
-  rotate,
-  scale,
+  width,
+  radius,
   children,
 }: {
-  rotate: MotionValue<number>;
-  scale: MotionValue<number>;
-  translate: MotionValue<number>;
+  width: MotionValue<string>;
+  radius: MotionValue<number>;
   children: React.ReactNode;
 }) => {
   return (
+    // the "window" — this is the only element that resizes
     <motion.div
-      style={{ rotateX: rotate, scale }}
-      className={`mx-auto md:-translate-y-10 w-full rounded-3xl shadow-2xl`}
+      style={{
+        width,
+        borderRadius: radius,
+        transformPerspective: 1200,
+      }}
+      className="relative origin-top overflow-hidden bg-black shadow-2xl dark:bg-white"
     >
-      <div className="h-full w-full bg-gray-100 dark:bg-black rounded-3xl overflow-hidden">
-        {children}
+      <div className="relative w-full h-dvh">
+        <div className="absolute left-1/2 top-0 h-full w-screen max-w-none -translate-x-1/2">
+          {children}
+        </div>
       </div>
     </motion.div>
   );

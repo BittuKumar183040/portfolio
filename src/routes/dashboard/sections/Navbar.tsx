@@ -3,8 +3,8 @@ import NavBarBtn from '../../../components/NavBarBtn';
 import { MdOutlineDocumentScanner } from 'react-icons/md';
 
 const Navbar = () => {
-  const handleClick = (e: any) => {
-    if (e.target.id === 'Curriculum Vitae') {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if ((e.target as HTMLButtonElement).id === 'Curriculum Vitae') {
       window.location.href = '/curriculumvitae';
     }
   };
@@ -15,7 +15,9 @@ const Navbar = () => {
         dark:bg-slate-950 dark:bg-opacity-25 dark:text-white"
     >
       <div className="flex-1 flex items-center">
-        <p className="text-md">Bittu Kumar.</p>
+        <a href="/" className="text-md">
+          Bittu Kumar.
+        </a>
       </div>
       <div className="flex gap-8 items-center">
         <DarkModeBtn />

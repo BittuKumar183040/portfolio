@@ -1,370 +1,671 @@
-// components/InteractiveImage.tsx
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
+import { Line2 } from 'three/examples/jsm/lines/Line2.js';
+import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry.js';
+import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
 
-interface InteractiveImageProps {
+export interface InteractiveImageProps {
+  /** URL/import of the .svg file to render. */
   src: string;
   className?: string;
-  intensity?: number;
-  damping?: number;
-  introDuration?: number;
+  /** Line color while the page is in light mode. */
+  lightColor?: string;
+  /** Line color while the page is in dark mode. */
+  darkColor?: string;
+  /** Stroke width in CSS pixels — constant regardless of zoom/DPR. */
+  lineWidth?: number;
+  /** Sampling density per sub-path before simplification. */
+  precision?: number;
+  /** How long each strand takes to fly into place, in seconds. */
+  formDuration?: number;
+  /** How long, in seconds, strand start times are staggered across. */
+  staggerSpread?: number;
+  /** World-space radius the cursor disturbs nearby lines within. */
+  cursorRadius?: number;
+  /** Strength of the cursor's push. Set to 0 to disable the effect entirely. */
+  cursorStrength?: number;
+  /** Soft glow that follows the cursor as a hover cue. */
+  hoverGlow?: boolean;
+  /** Caps devicePixelRatio for rendering — lower is faster on retina/4K. */
+  maxPixelRatio?: number;
+  /** Point-simplification tolerance as a fraction of the image's size.
+   *  Higher = fewer points = faster, but coarser curves. */
+  simplifyTolerance?: number;
+  /** Fires once every strand has finished flying in. */
+  onFormed?: () => void;
 }
 
-/* ---------- Ripple plane (steady state) ---------- */
+interface Box2D {
+  minX: number;
+  maxX: number;
+  minY: number;
+  maxY: number;
+}
 
-const planeVertex = /* glsl */ `
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+interface Strand {
+  line: Line2;
+  material: LineMaterial;
+  target: Float32Array;
+  start: Float32Array;
+  current: Float32Array;
+  box: Box2D;
+  delay: number;
+  pointCount: number;
+  /** Whether this strand currently needs per-point updates (forming, being
+   *  pushed by the cursor, or settling back to rest). */
+  active: boolean;
+}
+
+function easeOutExpo(x: number): number {
+  return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x);
+}
+
+function aabbCircleIntersects(
+  box: Box2D,
+  mx: number,
+  my: number,
+  r: number,
+): boolean {
+  const cx = Math.max(box.minX, Math.min(mx, box.maxX));
+  const cy = Math.max(box.minY, Math.min(my, box.maxY));
+  const dx = mx - cx;
+  const dy = my - cy;
+  return dx * dx + dy * dy <= r * r;
+}
+
+function writeStrandPositions(strand: Strand): void {
+  const geometry = strand.line.geometry as LineGeometry;
+  const attr = geometry.attributes
+    .instanceStart as THREE.InterleavedBufferAttribute;
+  const buffer = attr.data as THREE.InterleavedBuffer;
+  const arr = buffer.array as Float32Array;
+  const flat = strand.current;
+  const segmentCount = strand.pointCount - 1;
+
+  for (let i = 0; i < segmentCount; i++) {
+    const srcA = i * 3;
+    const srcB = srcA + 3;
+    const dst = i * 6;
+    arr[dst] = flat[srcA];
+    arr[dst + 1] = flat[srcA + 1];
+    arr[dst + 2] = flat[srcA + 2];
+    arr[dst + 3] = flat[srcB];
+    arr[dst + 4] = flat[srcB + 1];
+    arr[dst + 5] = flat[srcB + 2];
   }
-`;
+  buffer.needsUpdate = true;
+}
 
-const planeFragment = /* glsl */ `
-  uniform sampler2D uTexture;
-  uniform vec2 uMouse;      // real cursor, damped
-  uniform vec2 uAmbient;    // idle sin/cos wander center
-  uniform float uHover;     // 0 = idle, 1 = actively pointed at
-  uniform float uTime;
-  uniform float uIntensity;
-  uniform float uOpacity;
-  varying vec2 vUv;
+/** Ramer–Douglas–Peucker simplification — thins out near-collinear runs of
+ *  points so a smooth curve doesn't cost more per frame than it needs to. */
+function simplifyPoints(
+  points: THREE.Vector2[],
+  tolerance: number,
+): THREE.Vector2[] {
+  if (points.length < 3 || tolerance <= 0) return points;
+  const sqTol = tolerance * tolerance;
 
-  void main() {
-    vec2 uv = vUv;
-
-    // blend the ripple center between the idle wander and the real cursor
-    vec2 center = mix(uAmbient, uMouse, uHover);
-
-    float dist = distance(uv, center);
-    float ripple = sin(dist * 40.0 - uTime * 4.0) * 0.5 + 0.5;
-    float falloff = smoothstep(0.35, 0.0, dist);
-
-    // idle motion is subtler than an active hover
-    float activeStrength = mix(0.35, 1.0, uHover) * uIntensity;
-
-    vec2 dir = normalize(uv - center + 0.0001);
-    float strength = falloff * ripple * activeStrength;
-
-    vec2 distortedUv = uv + dir * strength * 0.06;
-
-    if (distortedUv.x < 0.0 || distortedUv.x > 1.0 || distortedUv.y < 0.0 || distortedUv.y > 1.0) {
-      discard;
+  function sqSegDist(
+    p: THREE.Vector2,
+    a: THREE.Vector2,
+    b: THREE.Vector2,
+  ): number {
+    let x = a.x;
+    let y = a.y;
+    let dx = b.x - x;
+    let dy = b.y - y;
+    if (dx !== 0 || dy !== 0) {
+      const t = ((p.x - x) * dx + (p.y - y) * dy) / (dx * dx + dy * dy);
+      if (t > 1) {
+        x = b.x;
+        y = b.y;
+      } else if (t > 0) {
+        x += dx * t;
+        y += dy * t;
+      }
     }
-
-    vec4 color = texture2D(uTexture, distortedUv);
-    color.rgb += falloff * uHover * 0.15;
-    color.a *= uOpacity;
-    if (color.a < 0.01) discard;
-    gl_FragColor = color;
+    dx = p.x - x;
+    dy = p.y - y;
+    return dx * dx + dy * dy;
   }
-`;
 
-/* ---------- Particle assembly (intro only) ---------- */
-
-const pointsVertex = /* glsl */ `
-  uniform float uProgress;
-  uniform float uPointSize;
-  attribute vec3 aStart;
-  varying vec2 vUv;
-  varying float vAlpha;
-
-  void main() {
-    vUv = uv;
-    float t = 1.0 - pow(1.0 - uProgress, 3.0);
-    vec3 pos = mix(aStart, position, t);
-    vAlpha = 1.0 - smoothstep(0.85, 1.0, uProgress);
-    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-    gl_PointSize = uPointSize;
-    gl_Position = projectionMatrix * mvPosition;
+  function simplifyRec(pts: THREE.Vector2[]): THREE.Vector2[] {
+    let maxDist = 0;
+    let index = 0;
+    for (let i = 1; i < pts.length - 1; i++) {
+      const d = sqSegDist(pts[i], pts[0], pts[pts.length - 1]);
+      if (d > maxDist) {
+        maxDist = d;
+        index = i;
+      }
+    }
+    if (maxDist > sqTol) {
+      const left = simplifyRec(pts.slice(0, index + 1));
+      const right = simplifyRec(pts.slice(index));
+      return left.slice(0, -1).concat(right);
+    }
+    return [pts[0], pts[pts.length - 1]];
   }
-`;
 
-const pointsFragment = /* glsl */ `
-  uniform sampler2D uTexture;
-  varying vec2 vUv;
-  varying float vAlpha;
+  return simplifyRec(points);
+}
 
-  void main() {
-    vec2 c = gl_PointCoord - vec2(0.5);
-    if (length(c) > 0.5) discard;
-    vec4 color = texture2D(uTexture, vUv);
-    if (color.a < 0.1) discard;
-    gl_FragColor = vec4(color.rgb, color.a * vAlpha);
-  }
-`;
+function createGlowTexture(): THREE.CanvasTexture {
+  const size = 128;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d')!;
+  const gradient = ctx.createRadialGradient(
+    size / 2,
+    size / 2,
+    0,
+    size / 2,
+    size / 2,
+    size / 2,
+  );
+  gradient.addColorStop(0, 'rgba(255,255,255,0.9)');
+  gradient.addColorStop(0.4, 'rgba(255,255,255,0.3)');
+  gradient.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, size, size);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
+
+/** Tracks whether the page is currently in dark mode — supports both a
+ *  `dark` class on <html> (Tailwind's class strategy) and, absent that,
+ *  the OS-level prefers-color-scheme. */
+function useIsDarkMode(): boolean {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof document === 'undefined') return false;
+    const root = document.documentElement;
+    if (root.classList.contains('dark')) return true;
+    if (root.classList.contains('light')) return false;
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const update = () => {
+      if (root.classList.contains('dark')) return setIsDark(true);
+      if (root.classList.contains('light')) return setIsDark(false);
+      setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    };
+
+    const observer = new MutationObserver(update);
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    mq.addEventListener('change', update);
+
+    return () => {
+      observer.disconnect();
+      mq.removeEventListener('change', update);
+    };
+  }, []);
+
+  return isDark;
+}
 
 export default function InteractiveImage({
   src,
   className,
-  intensity = 1,
-  damping = 0.08,
-  introDuration = 1400,
+  lightColor = '#dc2626',
+  darkColor = '#000000',
+  lineWidth = 1.4,
+  precision = 6,
+  formDuration = 1.6,
+  staggerSpread = 0.6,
+  cursorRadius = 0.2,
+  cursorStrength = 0.05,
+  hoverGlow = true,
+  maxPixelRatio = 1.5,
+  simplifyTolerance = 0.0015,
+  onFormed,
 }: InteractiveImageProps) {
-  const mountRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const strandsRef = useRef<Strand[]>([]);
+  const isDark = useIsDarkMode();
 
   useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    let disposed = false;
+    let raf = 0;
+
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
-    const pixelRatioCap = isMobile ? 1.5 : 2;
-    const particleCols = isMobile ? 48 : 96;
+    const cursorOn = cursorStrength > 0 && !prefersReducedMotion;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
-    camera.position.z = 1;
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+    renderer.setPixelRatio(
+      Math.min(window.devicePixelRatio || 1, maxPixelRatio),
+    );
+    renderer.setClearColor(0x000000, 0);
+    renderer.domElement.style.display = 'block';
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    container.appendChild(renderer.domElement);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, pixelRatioCap));
-    mount.appendChild(renderer.domElement);
-    // pointer events land on the canvas itself
-    renderer.domElement.style.touchAction = 'none';
-    renderer.domElement.style.pointerEvents = 'auto';
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 10);
+    camera.position.z = 5;
 
-    const group = new THREE.Group();
-    scene.add(group);
+    let contentHalfWidth = 1;
+    let contentHalfHeight = 1;
+    const FIT_PADDING = 1.15;
 
-    const planeUniforms = {
-      uTexture: { value: null as THREE.Texture | null },
-      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-      uAmbient: { value: new THREE.Vector2(0.5, 0.5) },
-      uHover: { value: 0 },
-      uTime: { value: 0 },
-      uIntensity: { value: intensity },
-      uOpacity: { value: prefersReducedMotion ? 1 : 0 },
-    };
-
-    const planeMaterial = new THREE.ShaderMaterial({
-      vertexShader: planeVertex,
-      fragmentShader: planeFragment,
-      uniforms: planeUniforms,
-      transparent: true,
-    });
-
-    const planeGeometry = new THREE.PlaneGeometry(2, 2);
-    const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
-    group.add(planeMesh);
-
-    const pointsUniforms = {
-      uTexture: { value: null as THREE.Texture | null },
-      uProgress: { value: prefersReducedMotion ? 1 : 0 },
-      uPointSize: { value: 4 },
-    };
-
-    const pointsMaterial = new THREE.ShaderMaterial({
-      vertexShader: pointsVertex,
-      fragmentShader: pointsFragment,
-      uniforms: pointsUniforms,
-      transparent: true,
-      depthWrite: false,
-    });
-
-    let pointsMesh: THREE.Points | null = null;
-    let imageAspect = 1;
-
-    const fitToContainer = () => {
-      const w = mount.clientWidth;
-      const h = mount.clientHeight;
-      if (!w || !h) return;
-
-      renderer.setSize(w, h);
+    function fitCamera() {
+      const rect = container!.getBoundingClientRect();
+      const w = Math.max(1, rect.width);
+      const h = Math.max(1, rect.height);
+      renderer.setSize(w, h, false);
 
       const containerAspect = w / h;
-      if (containerAspect > imageAspect) {
-        group.scale.set(imageAspect / containerAspect, 1, 1);
+      const contentAspect = contentHalfWidth / contentHalfHeight;
+
+      let viewHalfW: number;
+      let viewHalfH: number;
+      if (containerAspect > contentAspect) {
+        viewHalfH = contentHalfHeight * FIT_PADDING;
+        viewHalfW = viewHalfH * containerAspect;
       } else {
-        group.scale.set(1, containerAspect / imageAspect, 1);
+        viewHalfW = contentHalfWidth * FIT_PADDING;
+        viewHalfH = viewHalfW / containerAspect;
       }
 
-      const dpr = renderer.getPixelRatio();
-      pointsUniforms.uPointSize.value = Math.max(
-        2,
-        ((w / particleCols) * dpr) / group.scale.x,
-      );
-    };
+      camera.left = -viewHalfW;
+      camera.right = viewHalfW;
+      camera.top = viewHalfH;
+      camera.bottom = -viewHalfH;
+      camera.updateProjectionMatrix();
 
-    const buildParticles = () => {
-      const rows = Math.round(particleCols / imageAspect) || particleCols;
-      const count = particleCols * rows;
+      strandsRef.current.forEach((s) => s.material.resolution.set(w, h));
+    }
 
-      const positions = new Float32Array(count * 3);
-      const starts = new Float32Array(count * 3);
-      const uvs = new Float32Array(count * 2);
+    // --- Cursor tracking (world-space, on the z=0 plane) ----------------
+    const raycaster = new THREE.Raycaster();
+    const ndc = new THREE.Vector2();
+    const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+    const mouse = new THREE.Vector2(0, 100);
+    const mouseTarget = new THREE.Vector2(0, 100);
+    const hitPoint = new THREE.Vector3();
+    let hovering = false;
 
-      let i = 0;
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < particleCols; x++) {
-          const u = x / (particleCols - 1);
-          const v = y / (rows - 1);
-
-          const px = u * 2 - 1;
-          const py = v * 2 - 1;
-
-          positions[i * 3] = px;
-          positions[i * 3 + 1] = py;
-          positions[i * 3 + 2] = 0;
-
-          const angle = Math.random() * Math.PI * 2;
-          const radius = 2 + Math.random() * 3;
-          starts[i * 3] = px + Math.cos(angle) * radius;
-          starts[i * 3 + 1] = py + Math.sin(angle) * radius;
-          starts[i * 3 + 2] = (Math.random() - 0.5) * 1.5;
-
-          uvs[i * 2] = u;
-          uvs[i * 2 + 1] = v;
-
-          i++;
-        }
+    function updateMouseFromEvent(e: PointerEvent) {
+      const rect = container!.getBoundingClientRect();
+      ndc.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      ndc.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(ndc, camera);
+      if (raycaster.ray.intersectPlane(plane, hitPoint)) {
+        mouseTarget.set(hitPoint.x, hitPoint.y);
       }
+    }
+    function handlePointerEnter() {
+      hovering = true;
+    }
+    function handlePointerLeave() {
+      hovering = false;
+      mouseTarget.set(0, 100);
+    }
 
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute(
-        'position',
-        new THREE.BufferAttribute(positions, 3),
-      );
-      geometry.setAttribute('aStart', new THREE.BufferAttribute(starts, 3));
-      geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+    if (cursorOn) {
+      container.addEventListener('pointermove', updateMouseFromEvent);
+      container.addEventListener('pointerenter', handlePointerEnter);
+      container.addEventListener('pointerleave', handlePointerLeave);
+      container.style.cursor = 'pointer';
+    }
 
-      pointsMesh = new THREE.Points(geometry, pointsMaterial);
-      group.add(pointsMesh);
-    };
+    // --- Hover glow sprite (the "cursor pointer" affordance) ------------
+    let glowSprite: THREE.Sprite | null = null;
+    let glowTexture: THREE.CanvasTexture | null = null;
+    if (cursorOn && hoverGlow) {
+      glowTexture = createGlowTexture();
+      const glowMaterial = new THREE.SpriteMaterial({
+        map: glowTexture,
+        color: new THREE.Color(isDark ? darkColor : lightColor),
+        transparent: true,
+        opacity: 0,
+        depthTest: false,
+        blending: THREE.AdditiveBlending,
+      });
+      glowSprite = new THREE.Sprite(glowMaterial);
+      glowSprite.renderOrder = 10;
+      scene.add(glowSprite);
+    }
 
-    const loader = new THREE.TextureLoader();
-    let introStart = 0;
-    let introPlaying = false;
-
-    loader.load(src, (texture) => {
-      texture.colorSpace = THREE.SRGBColorSpace;
-      const img = texture.image as HTMLImageElement;
-      imageAspect = img.width / img.height;
-
-      planeUniforms.uTexture.value = texture;
-      pointsUniforms.uTexture.value = texture;
-
-      fitToContainer();
-
-      if (!prefersReducedMotion) {
-        buildParticles();
-        introStart = performance.now();
-        introPlaying = true;
-      }
-    });
-
-    // ---- pointer state ----
-    const targetMouse = new THREE.Vector2(0.5, 0.5);
-    let isHovering = false;
-    let targetHover = 0;
-    let raf: number;
+    // --- Load the SVG, build one Line2 strand per sub-path --------------
+    let formStartTime: number | null = null;
+    let formed = false;
     const clock = new THREE.Clock();
 
-    const getLocalPoint = (clientX: number, clientY: number) => {
-      const rect = mount.getBoundingClientRect();
-      return {
-        x: (clientX - rect.left) / rect.width,
-        y: 1 - (clientY - rect.top) / rect.height,
-      };
-    };
+    async function build() {
+      const res = await fetch(src);
+      const text = await res.text();
+      if (disposed) return;
 
-    const handlePointerEnter = (e: PointerEvent) => {
-      isHovering = true;
-      targetHover = 1;
-      const p = getLocalPoint(e.clientX, e.clientY);
-      targetMouse.set(p.x, p.y);
-    };
+      const loader = new SVGLoader();
+      const svgData = loader.parse(text);
 
-    const handlePointerMove = (e: PointerEvent) => {
-      if (!isHovering) {
-        isHovering = true;
-        targetHover = 1;
-      }
-      const p = getLocalPoint(e.clientX, e.clientY);
-      targetMouse.set(p.x, p.y);
-    };
+      const divisions = Math.max(8, precision * 8);
+      const rawStrands: THREE.Vector2[][] = [];
 
-    const handlePointerLeave = () => {
-      isHovering = false;
-      targetHover = 0;
-    };
+      // First pass: sample + simplify each sub-path independently so the
+      // RDP tolerance can be scaled relative to the SVG's own size.
+      let rawMinX = Infinity;
+      let rawMaxX = -Infinity;
+      let rawMinY = Infinity;
+      let rawMaxY = -Infinity;
+      const sampled: THREE.Vector2[][] = [];
+      svgData.paths.forEach((path) => {
+        path.subPaths.forEach((subPath) => {
+          const pts = subPath.getPoints(divisions);
+          if (pts.length < 2) return;
+          sampled.push(pts);
+          pts.forEach((p) => {
+            rawMinX = Math.min(rawMinX, p.x);
+            rawMaxX = Math.max(rawMaxX, p.x);
+            rawMinY = Math.min(rawMinY, p.y);
+            rawMaxY = Math.max(rawMaxY, p.y);
+          });
+        });
+      });
+      if (sampled.length === 0) return;
 
-    const animate = () => {
-      raf = requestAnimationFrame(animate);
+      const rawSpan = Math.max(rawMaxX - rawMinX, rawMaxY - rawMinY, 1e-3);
+      const tolerance = simplifyTolerance * rawSpan;
+      sampled.forEach((pts) => {
+        const simplified = tolerance > 0 ? simplifyPoints(pts, tolerance) : pts;
+        if (simplified.length >= 2) rawStrands.push(simplified);
+      });
 
-      const t = clock.getElapsedTime();
-
-      // constant idle wander, always running regardless of hover state
-      planeUniforms.uAmbient.value.set(
-        0.5 + Math.sin(t * 0.35) * 0.28,
-        0.5 + Math.cos(t * 0.27) * 0.22,
+      // Bounding box across the (possibly simplified) points, svg space (y-down).
+      let minX = Infinity;
+      let maxX = -Infinity;
+      let minY = Infinity;
+      let maxY = -Infinity;
+      rawStrands.forEach((pts) =>
+        pts.forEach((p) => {
+          minX = Math.min(minX, p.x);
+          maxX = Math.max(maxX, p.x);
+          minY = Math.min(minY, p.y);
+          maxY = Math.max(maxY, p.y);
+        }),
       );
 
-      planeUniforms.uMouse.value.lerp(targetMouse, damping);
-      planeUniforms.uHover.value +=
-        (targetHover - planeUniforms.uHover.value) * damping;
-      planeUniforms.uTime.value = t;
+      const cx = (minX + maxX) / 2;
+      const cy = (minY + maxY) / 2;
+      const spanX = Math.max(maxX - minX, 1e-3);
+      const spanY = Math.max(maxY - minY, 1e-3);
+      // Normalize the longest side to 2 world units so the geometry stays
+      // pixel-precise and proportional regardless of the source SVG's units.
+      const scale = 2 / Math.max(spanX, spanY);
 
-      if (introPlaying) {
-        const elapsed = performance.now() - introStart;
-        const progress = Math.min(elapsed / introDuration, 1);
-        pointsUniforms.uProgress.value = progress;
-        planeUniforms.uOpacity.value = THREE.MathUtils.smoothstep(
-          progress,
-          0.6,
-          1,
-        );
+      contentHalfWidth = (spanX * scale) / 2;
+      contentHalfHeight = (spanY * scale) / 2;
 
-        if (progress >= 1) {
-          introPlaying = false;
-          if (pointsMesh) {
-            group.remove(pointsMesh);
-            pointsMesh.geometry.dispose();
-            pointsMesh = null;
+      const color = new THREE.Color(isDark ? darkColor : lightColor);
+
+      const strands: Strand[] = rawStrands.map((pts) => {
+        const target = new Float32Array(pts.length * 3);
+        let bMinX = Infinity;
+        let bMaxX = -Infinity;
+        let bMinY = Infinity;
+        let bMaxY = -Infinity;
+        pts.forEach((p, j) => {
+          const x = (p.x - cx) * scale;
+          const y = -(p.y - cy) * scale; // svg y-down -> three y-up
+          target[j * 3] = x;
+          target[j * 3 + 1] = y;
+          target[j * 3 + 2] = 0;
+          bMinX = Math.min(bMinX, x);
+          bMaxX = Math.max(bMaxX, x);
+          bMinY = Math.min(bMinY, y);
+          bMaxY = Math.max(bMaxY, y);
+        });
+
+        const start = new Float32Array(target.length);
+        if (prefersReducedMotion) {
+          start.set(target);
+        } else {
+          // Each strand flies in from its own random direction/distance.
+          const angle = Math.random() * Math.PI * 2;
+          const dist = 3 + Math.random() * 3;
+          const dx = Math.cos(angle) * dist;
+          const dy = Math.sin(angle) * dist;
+          for (let j = 0; j < pts.length; j++) {
+            start[j * 3] = target[j * 3] + dx;
+            start[j * 3 + 1] = target[j * 3 + 1] + dy;
+            start[j * 3 + 2] = (Math.random() - 0.5) * 0.6;
           }
         }
+
+        const geometry = new LineGeometry();
+        geometry.setPositions(start); // one-time cost — fine at build time
+
+        const material = new LineMaterial({
+          color: color.getHex(),
+          linewidth: lineWidth,
+          transparent: true,
+          opacity: prefersReducedMotion ? 1 : 0,
+          depthTest: false,
+          worldUnits: false,
+        });
+
+        const line = new Line2(geometry, material);
+        line.frustumCulled = false;
+        scene.add(line);
+
+        return {
+          line,
+          material,
+          target,
+          start,
+          current: start.slice(),
+          box: { minX: bMinX, maxX: bMaxX, minY: bMinY, maxY: bMaxY },
+          delay: prefersReducedMotion ? 0 : Math.random() * staggerSpread,
+          pointCount: pts.length,
+          active: true,
+        };
+      });
+
+      strandsRef.current = strands;
+      fitCamera();
+      raf = requestAnimationFrame(animate);
+    }
+
+    function animate() {
+      if (disposed) return;
+      const elapsed = clock.getElapsedTime();
+      if (formStartTime === null) formStartTime = elapsed;
+      const t = elapsed - formStartTime;
+
+      mouse.lerp(mouseTarget, 0.15);
+
+      let allFormed = true;
+      const strands = strandsRef.current;
+
+      for (const s of strands) {
+        const localT = prefersReducedMotion
+          ? 1
+          : Math.min(1, Math.max(0, (t - s.delay) / formDuration));
+        const stillForming = localT < 1;
+        if (stillForming) allFormed = false;
+
+        if (stillForming) {
+          const eased = easeOutExpo(localT);
+          for (let j = 0; j < s.pointCount; j++) {
+            const ix = j * 3;
+            const iy = ix + 1;
+            const iz = ix + 2;
+            s.current[ix] = THREE.MathUtils.lerp(
+              s.start[ix],
+              s.target[ix],
+              eased,
+            );
+            s.current[iy] = THREE.MathUtils.lerp(
+              s.start[iy],
+              s.target[iy],
+              eased,
+            );
+            s.current[iz] = THREE.MathUtils.lerp(
+              s.start[iz],
+              s.target[iz],
+              eased,
+            );
+          }
+          s.material.opacity = eased;
+          s.active = true;
+          writeStrandPositions(s);
+          continue;
+        }
+
+        s.material.opacity = 1;
+
+        const nearCursor =
+          cursorOn &&
+          aabbCircleIntersects(s.box, mouse.x, mouse.y, cursorRadius);
+
+        if (nearCursor) {
+          for (let j = 0; j < s.pointCount; j++) {
+            const ix = j * 3;
+            const iy = ix + 1;
+            const iz = ix + 2;
+            const tx = s.target[ix];
+            const ty = s.target[iy];
+            const dx = tx - mouse.x;
+            const dy = ty - mouse.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < cursorRadius) {
+              const falloff = 1 - d / cursorRadius;
+              const push = falloff * falloff * cursorStrength;
+              const nx = d > 1e-4 ? dx / d : 0;
+              const ny = d > 1e-4 ? dy / d : 0;
+              s.current[ix] = tx + nx * push;
+              s.current[iy] = ty + ny * push;
+            } else {
+              s.current[ix] = tx;
+              s.current[iy] = ty;
+            }
+            s.current[iz] = s.target[iz];
+          }
+          s.active = true;
+          writeStrandPositions(s);
+        } else if (s.active) {
+          // Ease back to rest over a few frames, then go fully idle.
+          let maxDiff = 0;
+          for (let j = 0; j < s.pointCount; j++) {
+            const ix = j * 3;
+            const iy = ix + 1;
+            s.current[ix] += (s.target[ix] - s.current[ix]) * 0.2;
+            s.current[iy] += (s.target[iy] - s.current[iy]) * 0.2;
+            maxDiff = Math.max(
+              maxDiff,
+              Math.abs(s.target[ix] - s.current[ix]),
+              Math.abs(s.target[iy] - s.current[iy]),
+            );
+          }
+          if (maxDiff < 0.001) {
+            s.current.set(s.target);
+            s.active = false;
+          }
+          writeStrandPositions(s);
+        }
+        // else: already at rest and far from the cursor — nothing to do.
       }
 
-      if (planeUniforms.uTexture.value) renderer.render(scene, camera);
-    };
-    animate();
+      if (glowSprite && glowTexture) {
+        const targetOpacity = hovering ? 0.01 : 0;
+        glowSprite.material.opacity +=
+          (targetOpacity - glowSprite.material.opacity) * 0.012;
+        glowSprite.position.set(mouse.x, mouse.y, 0.001);
+        const pulse = 1 + Math.sin(elapsed * 0.4) * 0.006;
+        const baseScale = cursorRadius * 0.04 * pulse;
+        glowSprite.scale.set(baseScale, baseScale, 1);
+      }
 
-    const el = renderer.domElement;
-    el.addEventListener('pointerenter', handlePointerEnter);
-    el.addEventListener('pointermove', handlePointerMove);
-    el.addEventListener('pointerleave', handlePointerLeave);
-    el.addEventListener('pointercancel', handlePointerLeave);
+      if (allFormed && !formed) {
+        formed = true;
+        onFormed?.();
+      }
 
-    const resizeObserver = new ResizeObserver(fitToContainer);
-    resizeObserver.observe(mount);
+      renderer.render(scene, camera);
+
+      // While the cursor effect is enabled we keep the loop alive so a
+      // newly-hovering pointer is picked up; per-strand work above is
+      // already gated to near-zero cost when nothing is happening.
+      if (!allFormed || cursorOn) {
+        raf = requestAnimationFrame(animate);
+      } else {
+        raf = 0;
+      }
+    }
+
+    build();
+
+    const resizeObserver = new ResizeObserver(() => {
+      fitCamera();
+      if (formed && !cursorOn) renderer.render(scene, camera);
+    });
+    resizeObserver.observe(container);
 
     return () => {
+      disposed = true;
       cancelAnimationFrame(raf);
-      el.removeEventListener('pointerenter', handlePointerEnter);
-      el.removeEventListener('pointermove', handlePointerMove);
-      el.removeEventListener('pointerleave', handlePointerLeave);
-      el.removeEventListener('pointercancel', handlePointerLeave);
       resizeObserver.disconnect();
+      container.removeEventListener('pointermove', updateMouseFromEvent);
+      container.removeEventListener('pointerenter', handlePointerEnter);
+      container.removeEventListener('pointerleave', handlePointerLeave);
+
+      strandsRef.current.forEach((s) => {
+        scene.remove(s.line);
+        s.line.geometry.dispose();
+        s.material.dispose();
+      });
+      strandsRef.current = [];
+
+      if (glowSprite) {
+        scene.remove(glowSprite);
+        glowSprite.material.dispose();
+      }
+      glowTexture?.dispose();
 
       renderer.dispose();
-      planeGeometry.dispose();
-      planeMaterial.dispose();
-      pointsMaterial.dispose();
-      pointsMesh?.geometry.dispose();
-      planeUniforms.uTexture.value?.dispose();
-
-      if (mount.contains(renderer.domElement)) {
-        mount.removeChild(renderer.domElement);
+      if (renderer.domElement.parentNode === container) {
+        container.removeChild(renderer.domElement);
       }
     };
-  }, [src, intensity, damping, introDuration]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    src,
+    lineWidth,
+    precision,
+    formDuration,
+    staggerSpread,
+    cursorRadius,
+    cursorStrength,
+    hoverGlow,
+    maxPixelRatio,
+    simplifyTolerance,
+  ]);
+
+  // --- Recolor in place on theme change, without replaying the animation --
+  useEffect(() => {
+    const color = new THREE.Color(isDark ? darkColor : lightColor);
+    strandsRef.current.forEach((s) => s.material.color.set(color));
+  }, [isDark, lightColor, darkColor]);
 
   return (
     <div
-      ref={mountRef}
+      ref={containerRef}
       className={className}
-      style={{ width: '100%', height: '100%' }}
+      style={{ position: 'relative', overflow: 'hidden' }}
+      aria-hidden="true"
     />
   );
 }
