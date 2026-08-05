@@ -1,6 +1,6 @@
 import { FaGithub } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-import { RiContactsLine } from 'react-icons/ri';
+import { RiContactsLine, RiArrowRightLine } from 'react-icons/ri';
 import { FaLinkedinIn } from 'react-icons/fa6';
 
 function ConnectBtn() {
@@ -16,15 +16,14 @@ function ConnectBtn() {
   }, []);
 
   return (
-    <div className="flex gap-2 mt-10 md:flex-row flex-col items-center md:justify-start justify-center ">
+    <div className="flex gap-5 mt-10 md:flex-row flex-col items-center md:justify-start justify-center ">
       <button
         onClick={handleExpand}
-        className="btn btn-sm btn-outline bg-white transition-colors duration-200 ease-linear mr-4
-          dark:text-white dark:bg-gray-900 dark:border-white
-          hover:dark:bg-gray-200 hover:dark:text-gray-800"
+        className="group btn btn-sm h-10 px-5 rounded-full border-0 bg-gradient-to-r from-red-500 to-red-600 text-white shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 normal-case"
       >
-        <RiContactsLine className="mr-1" />
+        <RiContactsLine className="text-lg transition-transform duration-300 group-hover:rotate-12" />
         <span>Get in Touch</span>
+        <RiArrowRightLine className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
       </button>
       <div
         className={`flex flex-row gap-2 transition-all duration-300 ease-in-out ${
