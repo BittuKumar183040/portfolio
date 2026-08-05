@@ -1,6 +1,6 @@
 import SectionHeading from '../../../components/SectionHeading';
 import TimelineItem from '../../../components/experience/TimelineItem';
-import experiences from '../../../components/experience/experienceData';
+import experiences from '../../../assets/data/experienceData';
 
 const Timeline = () => {
   return (

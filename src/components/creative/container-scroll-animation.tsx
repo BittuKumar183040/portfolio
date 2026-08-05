@@ -1,6 +1,6 @@
-"use client";
-import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "motion/react";
+'use client';
+import React, { useRef } from 'react';
+import { useScroll, useTransform, motion, MotionValue } from 'motion/react';
 
 export const ContainerScroll = ({
   titleComponent,
@@ -12,16 +12,16 @@ export const ContainerScroll = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "end center"],
+    offset: ['start center', 'end center'],
   });
 
-  const width = useTransform(scrollYProgress, [0, 0.5], ["70vw", "100vw"]);
+  const width = useTransform(scrollYProgress, [0, 0.5], ['70vw', '100vw']);
   const radius = useTransform(scrollYProgress, [0, 0.5], [28, 0]);
   const translate = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
 
   return (
     // extra height = the runway the sticky child scrolls through before it releases
-    <div ref={containerRef} className="relative" style={{ height: "100vh" }}>
+    <div ref={containerRef} className="relative" style={{ height: '100vh' }}>
       {/* NOTE: no overflow-hidden and no perspective here — that's what was locking scroll */}
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center">
         <Header translate={translate} titleComponent={titleComponent} />

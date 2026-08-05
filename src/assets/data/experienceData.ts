@@ -1,4 +1,4 @@
-import type { Experience } from './types';
+import type { Experience } from '../../components/experience/types';
 
 const experiences: Experience[] = [
   {
@@ -6,7 +6,7 @@ const experiences: Experience[] = [
     period: 'March 2024 — Present',
     role: 'Full Stack Developer',
     company: 'Rexcrux',
-    logo: '/dist/images/rexcrux.png',
+    logo: '/rexcrux.png',
     logoAlt: 'Rexcrux logo',
     employmentType: 'Freelance',
     highlights: [
@@ -41,7 +41,7 @@ const experiences: Experience[] = [
     period: 'January 2023 — Present',
     role: 'Full Stack Developer',
     company: 'BosonQ Psi Pvt. Ltd.',
-    logo: '/dist/images/bqp.png',
+    logo: '/bqp.png',
     logoAlt: 'BosonQ Psi logo',
     summary:
       "With 2 years of experience at this company, I play a key role in the software team, handling both frontend and backend development for Beta 2.0. I work with technologies like React JS, FastAPI, and Spring Boot, and manage deployment to the Dev environment. I've also developed multiple POCs and led development of an in-house 3D model visualization tool to display simulation results and uploaded CAD files.",

@@ -1,9 +1,5 @@
-import {
-  IoLogoGithub,
-  IoLogoLinkedin,
-  IoMail,
-} from "react-icons/io5";
-import me from "../../../assets/me.svg";
+import { IoLogoGithub, IoLogoLinkedin, IoMail } from 'react-icons/io5';
+import me from '../../../assets/me.svg';
 
 const Footer = () => {
   return (

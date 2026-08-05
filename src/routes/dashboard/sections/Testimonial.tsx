@@ -157,51 +157,51 @@ export default function Testimonials({
     <section
       className={`mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 lg:px-8 ${className ?? ''}`}
     >
-        <div className="flex flex-col justify-between">
-          <div>
-            <h3
-              ref={nameRef}
-              className="mb-1 text-2xl font-bold dark:text-gray-900 text-white"
-            >
-              {current.name}
-            </h3>
-            <p
-              ref={designationRef}
-              className="mb-8 text-sm dark:text-gray-500 text-gray-400"
-            >
-              {current.designation}
-            </p>
-            <p
-              ref={quoteRef}
-              className="text-lg leading-relaxed dark:text-gray-600 text-gray-300"
-            >
-              {current.quote.split(' ').map((word, i) => (
-                <span key={i} className="word inline-block">
-                  {word}&nbsp;
-                </span>
-              ))}
-            </p>
-          </div>
-
-          <div className="flex justify-end gap-8 pt-28 md:pt-0">
-            <button
-              type="button"
-              onClick={handlePrev}
-              aria-label="Previous testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 hover:bg-sky-500 bg-white text-gray-900 dark:hover:bg-sky-400"
-            >
-              <BiLeftArrow />
-            </button>
-            <button
-              type="button"
-              onClick={handleNext}
-              aria-label="Next testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 hover:bg-sky-500 bg-white text-gray-900 dark:hover:bg-sky-400"
-            >
-              <BiRightArrow />
-            </button>
-          </div>
+      <div className="flex flex-col justify-between">
+        <div>
+          <h3
+            ref={nameRef}
+            className="mb-1 text-2xl font-bold dark:text-gray-900 text-white"
+          >
+            {current.name}
+          </h3>
+          <p
+            ref={designationRef}
+            className="mb-8 text-sm dark:text-gray-500 text-gray-400"
+          >
+            {current.designation}
+          </p>
+          <p
+            ref={quoteRef}
+            className="text-lg leading-relaxed dark:text-gray-600 text-gray-300"
+          >
+            {current.quote.split(' ').map((word, i) => (
+              <span key={i} className="word inline-block">
+                {word}&nbsp;
+              </span>
+            ))}
+          </p>
         </div>
+
+        <div className="flex justify-end gap-8 pt-28 md:pt-0">
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous testimonial"
+            className="flex h-9 w-9 items-center justify-center rounded-full dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 hover:bg-sky-500 bg-white text-gray-900 dark:hover:bg-sky-400"
+          >
+            <BiLeftArrow />
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next testimonial"
+            className="flex h-9 w-9 items-center justify-center rounded-full dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 hover:bg-sky-500 bg-white text-gray-900 dark:hover:bg-sky-400"
+          >
+            <BiRightArrow />
+          </button>
+        </div>
+      </div>
     </section>
   );
 }
